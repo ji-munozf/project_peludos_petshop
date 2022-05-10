@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peludos Petshop - La mejor tienda para tu mascota</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/menu_principal.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/boton_whatsapp.css' %}">
+</head>
+
+<body>
+    {% load static %}
+    <div class="wrapper">
+        <nav>
+            <input type="checkbox" id="show-search">
+            <input type="checkbox" id="show-menu">
+            <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+            <div class="content">
+                <img src="{% static '/img/peludos_petshop_icon.png' %}" alt="Peludos">
+                <div class="logo"><a href="#">Peludos petshop</a></div>
+                <ul class="links">
+                    <li>
+                        <a href="#" class="desktop-link">Perros</a>
+                        <input type="checkbox" id="show-perros">
+                        <label for="show-perros">Perros</label>
+                        <ul>
+                            <li><a href="#">Alimentos secos</a></li>
+                            <li><a href="#">Alimentos enlatados</a></li>
+                            <li><a href="#">Snack & premios</a></li>
+                            <li><a href="#">Juguetes</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="desktop-link">Gatos</a>
+                        <input type="checkbox" id="show-gato">
+                        <label for="show-gato">Gatos</label>
+                        <ul>
+                            <li><a href="#">Alimentos secos</a></li>
+                            <li><a href="#">Alimentos enlatados</a></li>
+                            <li><a href="#">Snack & premios</a></li>
+                            <li><a href="#">Snack & premios</a></li>
+                            <li><a href="#">Juguetes</a></li>
+                        </ul>
+                    <li>
+                        <a href="#" class="desktop-link">Otras mascota</a>
+                        <input type="checkbox" id="show-otros">
+                        <label for="show-otros">Otras mascotas</label>
+                        <ul>
+                            <li>
+                                <a href="#" class="desktop-link-submenu">Conejos</a>
+                                <input type="checkbox" id="show-conejos">
+                                <label for="show-conejos">Conejos</label>
+                                <ul>
+                                    <li><a href="#">Alimentos</a>
+                                    </li>
+                                    <li><a href="#">Accesorios</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="desktop-link-submenu">Erizo</a>
+                                <input type="checkbox" id="show-erizo">
+                                <label for="show-erizo">Erizo</label>
+                                <ul>
+                                    <li><a href="#">Alimentos</a>
+                                    </li>
+                                    <li><a href="#">Accesorios</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="desktop-link-submenu">Hamster</a>
+                                <input type="checkbox" id="show-hamster">
+                                <label for="show-hamster">Hamster</label>
+                                <ul>
+                                    <li><a href="#">Alimentos</a>
+                                    </li>
+                                    <li><a href="#">Accesorios</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="desktop-link-submenu">Hurones</a>
+                                <input type="checkbox" id="show-hurones">
+                                <label for="show-hurones">Hurones</label>
+                                <ul>
+                                    <li><a href="#">Alimentos</a>
+                                    </li>
+                                    <li><a href="#">Accesorios</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    </li>
+                    <li><a href="#">Iniciar sesión</a></li>
+                    <li><a href="#">Carrito</a></li>
+                </ul>
+            </div>
+            <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
+            <form action="#" class="search-box">
+                <input type="text" placeholder="¿Que es lo que buscas?" required>
+                <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
+            </form>
+        </nav>
+    </div>
+
+    <section class="home" id="home">
+        <div class="container-fluid">
+            <div class="content">
+                <h3>Encuentra</h3>
+                <span> lo mejor para tu mascota </span>
+                <p>La tienda ideal para tí y para tu mascota. Encontraras una gran variedad de productos para tu mascota
+                    y a un
+                    buen precio. <br>
+                    ¡No lo dudes!.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="product" id="product">
+        <h1 class="heading"> <span> Alguno de </span> nuestros productos para tu perro </h1>
+    </section>
+
+    <section class="product" id="product">
+        <h1 class="heading"> <span> Alguno de </span> nuestros productos para tu gato </h1>
+    </section>
+
+    <section class="product" id="product">
+        <h1 class="heading"> <span> Alguno de </span> nuestros productos para tu conejo</h1>
+    </section>
+
+    <section class="product" id="product">
+        <h1 class="heading"> <span> Alguno de </span> nuestros productos para tu erizo</h1>
+    </section>
+
+    <section class="product" id="product">
+        <h1 class="heading"> <span> Alguno de </span> nuestros productos para tu hamster</h1>
+    </section>
+
+    <section class="product" id="product">
+        <h1 class="heading"> <span> Alguno de </span> nuestros productos para tu hurón </h1>
+    </section>
+
+    <section class="about" id="about">
+        <h1 class="heading"> <span> Sobre </span> Nosotros </h1>
+        <div class="row">
+            <div class="content">
+                <h3>¿Quienes somos?</h3>
+                <p>Somos una empresa encargada de vender alimentos y accesorios para tu mascota, amamos a las mascotas
+                    al igual
+                    que tú y te venderemos productos de calidad y a buen precio.</p>
+                <h3>Nos comprometemos: </h3>
+                <p>En entregarte el mejor servicio y atención posible. Porqué para nosotros eres muy importante</p>
+            </div>
+    </section>
+
+    <section class="icons-container">
+        <div class="icons">
+            <img src="{% static '/img/icon-1.png' %}" alt="">
+            <div class="info">
+                <h3>Hacemos envíos</h3>
+                <span>a todo Chile</span>
+            </div>
+        </div>
+        <div class="icons">
+            <img src="{% static '/img/icon-2.png' %}" alt="">
+            <div class="info">
+                <h3>Descuentos especiales</h3>
+                <span>en nuestros precios</span>
+            </div>
+        </div>
+        <div class="icons">
+            <img src="{% static '/img/icon-3.png' %}" alt="">
+            <div class="info">
+                <h3>Pago protegido</h3>
+                <span>podras pagar tus productos de forma segura</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h1 class="heading"> <span> ¿Tienes una duda? </span> Contactanos </h1>
+        <div class="row">
+            <form action="" method="POST" id="contact">
+                <input type="text" placeholder="Nombre" id="nombre" pattern="[A-Za-z\u00f1\u00d1 ]+"
+                    title="Solo se permiten letras y espacios" maxlength="60" required class="box">
+                <input type="email" placeholder="Correo" id="email"
+                    pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
+                    title="El correo debe ser de la siguiente manera: example@domino.algo" required class="box">
+                <input type="number" placeholder="Número celular" id="number" required class="box">
+                <input type="text" placeholder="Asunto" id="nombre" pattern="[A-Za-z\u00f1\u00d1 ]+"
+                    title="Solo se permiten letras y espacios" maxlength="50" required class="box">
+                <textarea name="mensaje" class="box" placeholder="Mensaje" required id="mensaje" cols="30" rows="10"
+                    maxlength="500"></textarea>
+                <input type="submit" id="send" value="Enviar mensaje" class="btn">
+                <p class="aviso" id="aviso"></p>
+            </form>
+            <div class="image">
+                <img src="{% static '/img/Contacto.jpg' %}" alt="">
+            </div>
+        </div>
+    </section>
+
+    <!-- API Whatsapp -->
+    <a href="https://api.whatsapp.com/send?phone=930991227&text=Hola%20buenas.%20¡Necesito%20de%20su%20ayuda!"
+        class="float" target="_blank">
+        <i class="fa fa-whatsapp my-float"></i>
+    </a>
+    <!-- Fin API Whatsapp -->
+
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Peludos Petshop</h3>
+                <img src="{% static '/img/peludos_petshop_icon.png' %}" alt="Peludos">
+            </div>
+            <div class="box">
+                <h3>Redes sociales</h3>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+            </div>
+            <div class="box">
+                <h3>Envios</h3>
+                <a>Hacemos envios a todo Chile</a>
+            </div>
+            <div class="box">
+                <h3>Contacto</h3>
+                <a>+56 9 30991227</a>
+                <a>peludos_petshop@contacto.cl</a>
+                <a>Huechuraba, Chile</a>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
