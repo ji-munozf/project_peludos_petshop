@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,14 +14,12 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/menu_principal.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/boton_whatsapp.css' %}">
 </head>
 
 <body>
-    {% load static %}
     <div class="wrapper">
         <nav>
             <input type="checkbox" id="show-search">
@@ -28,14 +27,14 @@
             <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
             <div class="content">
                 <img src="{% static '/img/peludos_petshop_icon.png' %}" alt="Peludos">
-                <div class="logo"><a href="#">Peludos petshop</a></div>
+                <div class="logo"><a href="{% url 'home' %}">Peludos petshop</a></div>
                 <ul class="links">
                     <li>
                         <a href="#" class="desktop-link">Perros</a>
                         <input type="checkbox" id="show-perros">
                         <label for="show-perros">Perros</label>
                         <ul>
-                            <li><a href="#">Alimentos secos</a></li>
+                            <li><a href="{% url 'alimentos_secos_perro' %}">Alimentos secos</a></li>
                             <li><a href="#">Alimentos enlatados</a></li>
                             <li><a href="#">Snack & premios</a></li>
                             <li><a href="#">Juguetes</a></li>
