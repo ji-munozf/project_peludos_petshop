@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'peludos_petshop',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [

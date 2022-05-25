@@ -22,7 +22,6 @@
 </head>
 
 <body>
-    {% load humanize %}
     <div class="wrapper">
         <nav>
             <input type="checkbox" id="show-search">
@@ -37,8 +36,8 @@
                         <input type="checkbox" id="show-perros">
                         <label for="show-perros">Perros</label>
                         <ul>
-                            <li><a href="alimentos_secos.html">Alimentos secos</a></li>
-                            <li><a href="alimentos_enlatados.html">Alimentos enlatados</a></li>
+                            <li><a href="{% url 'alimentos_secos_perro' %}">Alimentos secos</a></li>
+                            <li><a href="{% url 'alimentos_enlatados_perro' %}">Alimentos enlatados</a></li>
                             <li><a href="snack.html">Snack & premios</a></li>
                             <li><a href="juguetes.html">Juguetes</a></li>
                         </ul>
@@ -128,25 +127,28 @@
                     </div>
                 </div>
             </div>
-            {% for m in producto %}
-            <div class="row">
-                <!-- Single Product -->
-                <div class="col-md-6 col-lg-4 col-xl-3">
-                    <div class="card">
-                        <a href="#">
-                            {% if m.fotoProducto %}
-                            <img src="{{ m.fotoProducto.url }}" alt="No hay imagen de producto" style="width:100%">
-                            {% endif %}
-                        </a>
-                        <h3>{{m.nomProducto}}</h3>
-                        <p class="price">${{m.precio | intcomma}}</p>
-                        <p><button>Añadir al carrito</button></p>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
         </div>
     </section>
+
+    <div class="container">
+        <div class="row">
+            {% for m in producto %}
+            {% if m.tipoMascota.idMascota == 1 and m.tipoProducto.idProducto == 2 %}
+            <div class="card">
+                <a href="#">
+                    {% if m.fotoProducto %}
+                    <img src="{{ m.fotoProducto.url }}" alt="No hay imagen de producto" style="width:100%">
+                    {% endif %}
+                </a>
+                <h3>{{ m.nomProducto }}</h3>
+                <p class="price">${{ m.precio}}</p>
+                <p><button>Añadir al carrito</button></p>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
     <a href="https://api.whatsapp.com/send?phone=930991227&text=Hola%20buenas.%20¡Necesito%20de%20su%20ayuda!"
         class="float" target="_blank">
         <i class="fa fa-whatsapp my-float"></i>

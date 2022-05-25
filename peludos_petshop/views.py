@@ -10,4 +10,9 @@ def home(request):
 def alimentos_secos_perro(request):
     productos = Producto.objects.all()
     contexto = {"producto": productos}
-    return render(request, 'peludos_petshop/alimentos_secos_perro.html',contexto)
+    return render(request, 'peludos_petshop/Vista_usuario/alimentos_secos_perro.html',contexto)
+
+def alimentos_enlatados_perro(request):
+    productos = Producto.objects.all()
+    contexto = {"producto": productos}
+    return render(request, 'peludos_petshop/Vista_usuario/alimentos_enlatados_perro.html',contexto)

@@ -12,7 +12,7 @@ class TipoMascota(models.Model):
 
 #Modelo tipo_producto
 class TipoProducto(models.Model):
-    idMascota = models.AutoField(primary_key=True, verbose_name="ID tipo de producto")
+    idProducto = models.AutoField(primary_key=True, verbose_name="ID tipo de producto")
     nomTipoProducto = models.CharField(max_length=50, verbose_name="Nombre tipo del producto")
 
     def __str__(self):
@@ -23,7 +23,6 @@ class Producto(models.Model):
     nomProducto = models.CharField(max_length=100, verbose_name="Nombre del producto")
     precio = models.IntegerField(verbose_name="Precio del producto", null=False, blank= False)
     stock = models.IntegerField(verbose_name="Stock del producto", null=False, blank= False)
-    cantidad = models.IntegerField(verbose_name="Cantidad del producto", null=False, blank= False)
     fotoProducto = models.ImageField(upload_to="producto", null=True)
     tipoMascota = models.ForeignKey(TipoMascota,on_delete= models.CASCADE)
     tipoProducto = models.ForeignKey(TipoProducto,on_delete= models.CASCADE)
