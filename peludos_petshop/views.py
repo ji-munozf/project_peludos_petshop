@@ -16,3 +16,7 @@ def alimentos_enlatados_perro(request):
     productos = Producto.objects.all()
     contexto = {"producto": productos}
     return render(request, 'peludos_petshop/Vista_usuario/alimentos_enlatados_perro.html',contexto)
+
+def detalle_producto(request):
+
+    return render(request, 'peludos_petshop/Vista_usuario/detalle_producto.html')
