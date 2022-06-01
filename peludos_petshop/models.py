@@ -23,6 +23,7 @@ class Producto(models.Model):
     nomProducto = models.CharField(max_length=100, verbose_name="Nombre del producto")
     precio = models.IntegerField(verbose_name="Precio del producto", null=False, blank= False)
     stock = models.IntegerField(verbose_name="Stock del producto", null=False, blank= False)
+    descripcion = models.TextField(verbose_name="Descripción del producto", null=True, blank= False)
     fotoProducto = models.ImageField(upload_to="producto", null=True)
     tipoMascota = models.ForeignKey(TipoMascota,on_delete= models.CASCADE)
     tipoProducto = models.ForeignKey(TipoProducto,on_delete= models.CASCADE)

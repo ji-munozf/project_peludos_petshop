@@ -135,7 +135,7 @@
             {% for m in producto %}
             {% if m.tipoMascota.idMascota == 1 and m.tipoProducto.idProducto == 1 %}
             <div class="card">
-                <a href="#">
+                <a href="{{m.idProducto}}">
                     {% if m.fotoProducto %}
                     <img src="{{ m.fotoProducto.url }}" alt="No hay imagen de producto">
                     {% endif %}

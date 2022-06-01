@@ -14,18 +14,23 @@
 }
 
 .detalle-producto img {
-    width: 450px
+    width: 600px
 }
 
 .card-title {
     font-family: 'Poppins', sans-serif;
     color: #FFA860;
-    font-size: 50px;
+    font-size: 45px;
     padding-bottom: 20px;
 }
 
 .card-text {
     font-size: 25px;
+}
+
+.card-text-descrip {
+    text-align: justify;
+    font-size: 23px;
 }
 
 .btn {
@@ -35,6 +40,7 @@
 
 .detalle-producto button:hover {
     background-color: #8a324e;
+    border-color: #8a324e;
 }
 
 .form-control {
@@ -81,10 +87,16 @@
   
 .card button:hover {
     opacity: 0.7;
+    border-color: #8a324e;
 }
 
 @media (max-width:991px) {
     .detalle-producto .card-title {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .card-text-descrip {
         text-align: center;
         justify-content: center;
     }
