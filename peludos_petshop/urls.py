@@ -5,5 +5,5 @@ urlpatterns = [
     path('', home, name="home"),
     path('alimentos_secos_perro/', alimentos_secos_perro, name="alimentos_secos_perro"),
     path('alimentos_enlatados_perro/', alimentos_enlatados_perro, name="alimentos_enlatados_perro"),
-    path('alimentos_secos_perro/<str:id>', detalle_producto, name="detalle_producto"),
+    path('detalle_producto/<str:id>', detalle_producto, name="detalle_producto"),
 ]

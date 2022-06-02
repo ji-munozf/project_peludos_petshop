@@ -130,23 +130,28 @@
         </div>
     </section>
 
+    {% load humanize %}
     <div class="container">
         <div class="row">
-            {% for m in producto %}
+            {% for m in entity %}
             {% if m.tipoMascota.idMascota == 1 and m.tipoProducto.idProducto == 1 %}
             <div class="card">
-                <a href="{{m.idProducto}}">
+                <a href="/detalle_producto/{{m.idProducto}}">
                     {% if m.fotoProducto %}
                     <img src="{{ m.fotoProducto.url }}" alt="No hay imagen de producto">
                     {% endif %}
                 </a>
                 <h4>{{ m.nomProducto }}</h4>
-                <p class="price">${{ m.precio}}</p>
-                <p><button>Añadir al carrito</button></p>
+                <p class="price">${{ m.precio | intcomma }}</p>
+                <p><button style="position: sticky;">Añadir al carrito</button></p>
             </div>
             {% endif %}
             {% endfor %}
         </div>
+    </div>
+
+    <div>
+        {% include 'peludos_petshop/paginador.html' %}
     </div>
 
     <a href="https://api.whatsapp.com/send?phone=930991227&text=Hola%20buenas.%20¡Necesito%20de%20su%20ayuda!"
