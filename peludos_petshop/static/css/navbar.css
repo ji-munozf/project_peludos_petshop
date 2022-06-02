@@ -203,6 +203,7 @@ img {
   .wrapper #show-menu:checked ~ .menu-icon i::before{
     content: "\f00d";
   }
+
   nav .content .links{
     display: block;
     position: fixed;
