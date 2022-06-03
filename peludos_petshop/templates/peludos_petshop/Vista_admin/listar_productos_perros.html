@@ -44,17 +44,9 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="desktop-link">Agregar productos</a>
+                        <a href="{% url 'agregar_productos' %}" class="desktop-link">Agregar productos</a>
                         <input type="checkbox" id="show-gato">
                         <label for="show-gato">Agregar productos</label>
-                        <ul>
-                            <li><a href="#">Perros</a></li>
-                            <li><a href="#">Gatos</a></li>
-                            <li><a href="#">Conejo</a></li>
-                            <li><a href="#">Erizo</a></li>
-                            <li><a href="#">Hasmter</a></li>
-                            <li><a href="#">Hurrón</a></li>
-                        </ul>
                     </li>
                     <li>
                         <a href="#" class="desktop-link">Lista de contactos</a>
@@ -84,21 +76,33 @@
         </div>
     </section>
 
+    <div class="container" style="font-size: 20px;">
+        {% if messages %}
+        <div>
+            {% for i in messages %}
+            <p style="color: red;">{{ i }}</p>
+            {% endfor %}
+        </div>
+
+        {% endif %}
+
     {% load humanize %}
     <div class="container">
         <div class="row">
             {% for m in entity %}
             {% if m.tipoMascota.idMascota == 1 %}
             <div class="card">
-                <a href="#">
-                    {% if m.fotoProducto %}
-                    <img src="{{ m.fotoProducto.url }}" alt="No hay imagen de producto">
-                    {% endif %}
-                </a>
+                {% if m.fotoProducto %}
+                <img src="{{ m.fotoProducto.url }}" alt="No hay imagen de producto">
+                {% endif %}
                 <h4>{{ m.nomProducto }}</h4>
                 <p class="price">{{ m.tipoProducto.nomTipoProducto }}</p>
-                <p><button type="button" class="btn btn_primary">Modificar producto</button></p>
-                <p><button type="button" class="btn btn-warning">Eliminar producto</button></p>
+                <a><button type="button" class="btn btn_primary">Modificar producto</button></a>
+                <p>
+                    <a href="{% url 'eliminar_producto' m.idProducto %}">
+                        <button type="button" class="btn btn-warning">Eliminar producto</button>
+                    </a>
+                </p>
             </div>
             {% endif %}
             {% endfor %}
