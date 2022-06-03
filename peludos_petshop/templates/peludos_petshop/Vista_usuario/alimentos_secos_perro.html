@@ -134,7 +134,7 @@
     <div class="container">
         <div class="row">
             {% for m in entity %}
-            {% if m.tipoMascota.idMascota == 1 and m.tipoProducto.idProducto == 1 %}
+            {% if m.tipoMascota.idMascota == 1 and m.tipoProducto.idTipoProducto == 1 %}
             <div class="card">
                 <a href="/detalle_producto/{{m.idProducto}}">
                     {% if m.fotoProducto %}
@@ -143,7 +143,7 @@
                 </a>
                 <h4>{{ m.nomProducto }}</h4>
                 <p class="price">${{ m.precio | intcomma }}</p>
-                <p><button style="position: sticky;">Añadir al carrito</button></p>
+                <p><button type="button" class="btn btn-primary">Añadir al carrito</button></p>
             </div>
             {% endif %}
             {% endfor %}

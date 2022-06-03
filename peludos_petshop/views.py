@@ -1,7 +1,6 @@
 from django.http import Http404
 from django.shortcuts import render
 from .models import Producto
-
 from django.core.paginator import Paginator
 from django.http import Http404
 
@@ -15,12 +14,29 @@ def home_admin(request):
 
     return render(request, 'peludos_petshop/Vista_admin/home_admin.html')
 
-def alimentos_secos_perro(request):
-    productos = Producto.objects.all()
+def listar_productos_perro(request):
+    producto = Producto.objects.all().order_by('nomProducto')
     page = request.GET.get('page', 1)
 
     try:
-        paginator = Paginator(productos, 6)
+        paginator = Paginator(producto, 9)
+        producto = paginator.page(page)
+    except:
+        raise Http404
+
+    contexto = {
+        "entity": producto,
+        "paginator": paginator
+    }
+
+    return render(request, 'peludos_petshop/Vista_admin/listar_productos_perros.html', contexto)
+
+def alimentos_secos_perro(request):
+    productos = Producto.objects.all().order_by('nomProducto')
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(productos, 10)
         productos = paginator.page(page)
     except:
         raise Http404
@@ -33,8 +49,20 @@ def alimentos_secos_perro(request):
     return render(request, 'peludos_petshop/Vista_usuario/alimentos_secos_perro.html',contexto)
 
 def alimentos_enlatados_perro(request):
-    productos = Producto.objects.all()
-    contexto = {"producto": productos}
+    productos = Producto.objects.all().order_by('nomProducto')
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(productos, 10)
+        productos = paginator.page(page)
+    except:
+        raise Http404
+
+    contexto = {
+        "entity": productos,
+        "paginator": paginator
+    }
+
     return render(request, 'peludos_petshop/Vista_usuario/alimentos_enlatados_perro.html',contexto)
 
 def detalle_producto(request, id):

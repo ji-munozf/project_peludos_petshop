@@ -12,7 +12,7 @@ class TipoMascota(models.Model):
 
 #Modelo tipo_producto
 class TipoProducto(models.Model):
-    idProducto = models.AutoField(primary_key=True, verbose_name="ID tipo de producto")
+    idTipoProducto = models.AutoField(primary_key=True, verbose_name="ID tipo de producto")
     nomTipoProducto = models.CharField(max_length=50, verbose_name="Nombre tipo del producto")
 
     def __str__(self):
