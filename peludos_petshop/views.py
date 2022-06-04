@@ -70,6 +70,39 @@ def eliminar_producto(request, id):
 
     return redirect('listar_productos_perro')
 
+def modificar_productos(request, id):
+    producto1 = Producto.objects.get(idProducto = id) # obtengo los datos del producto
+    mascota1 = TipoMascota.objects.all() #obtener todos los tipos de mascotas para llenar el combobox
+    tipo_p1 = TipoProducto.objects.all() #obtener todos los tipos de productos para llenar el combobox
+
+    contexto = {
+        "producto": producto1,
+        "mascotas": mascota1,
+        "tipo_productos": tipo_p1 
+    }
+
+    return render(request,'peludos_petshop/Vista_admin/modificar_productos.html',contexto)
+
+def modificar(request):
+    id_producto = request.POST['id_producto']
+    nombre_p = request.POST['nombre']
+    precio_p = request.POST['precio']
+    stock_p = request.POST['stock']
+    descripcion_p = request.POST['descripcion']
+
+    producto = Producto.objects.get(idProducto = id_producto) #el registro original
+    #comienzo a reemplazar los valores en ese registro original
+    producto.nomProducto = nombre_p
+    producto.precio = precio_p
+    producto.stock = stock_p
+    producto.descripcion = descripcion_p
+
+    producto.save() #update
+
+    messages.success(request, 'Producto modificado')
+
+    return redirect('listar_productos_perro')
+
 def alimentos_secos_perro(request):
     productos = Producto.objects.all().order_by('nomProducto')
     page = request.GET.get('page', 1)
@@ -108,4 +141,6 @@ def detalle_producto(request, id):
     producto = Producto.objects.filter(idProducto = id).first()
     contexto = {"producto": producto}
     return render(request, 'peludos_petshop/Vista_usuario/detalle_producto.html', contexto)
+
+
 

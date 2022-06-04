@@ -61,8 +61,8 @@
                 <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
             </form>
         </nav>
-    </div>  
-    
+    </div>
+
     <section class="section-products">
         <div class="container">
             <div class="row justify-content-center text-center">
@@ -86,34 +86,38 @@
 
         {% endif %}
 
-    {% load humanize %}
-    <div class="container">
-        <div class="row">
-            {% for m in entity %}
-            {% if m.tipoMascota.idMascota == 1 %}
-            <div class="card">
-                {% if m.fotoProducto %}
-                <img src="{{ m.fotoProducto.url }}" alt="No hay imagen de producto">
+        {% load humanize %}
+        <div class="container">
+            <div class="row">
+                {% for m in entity %}
+                {% if m.tipoMascota.idMascota == 1 %}
+                <div class="card">
+                    {% if m.fotoProducto %}
+                    <img src="{{ m.fotoProducto.url }}" alt="No hay imagen de producto">
+                    {% endif %}
+                    <h4>{{ m.nomProducto }}</h4>
+                    <p class="price">{{ m.tipoProducto.nomTipoProducto }}</p>
+                    <p>
+                        <a href="{% url 'modificar_productos' m.idProducto  %}">
+                            <button type="button" class="btn btn_primary">Modificar producto</button>
+                        </a>
+                    </p>
+                    <p>
+                        <a href="{% url 'eliminar_producto' m.idProducto %}">
+                            <button type="button" class="btn btn-warning">Eliminar producto</button>
+                        </a>
+                    </p>
+                </div>
                 {% endif %}
-                <h4>{{ m.nomProducto }}</h4>
-                <p class="price">{{ m.tipoProducto.nomTipoProducto }}</p>
-                <a><button type="button" class="btn btn_primary">Modificar producto</button></a>
-                <p>
-                    <a href="{% url 'eliminar_producto' m.idProducto %}">
-                        <button type="button" class="btn btn-warning">Eliminar producto</button>
-                    </a>
-                </p>
+                {% endfor %}
             </div>
-            {% endif %}
-            {% endfor %}
         </div>
-    </div>
 
-    <div>
-        {% include 'peludos_petshop/paginador.html' %}
-    </div>
+        <div>
+            {% include 'peludos_petshop/paginador.html' %}
+        </div>
 
-    
+
 </body>
 
 </html>

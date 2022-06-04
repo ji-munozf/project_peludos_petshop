@@ -51,6 +51,7 @@
                             <li><a href="#">Snack & premios</a></li>
                             <li><a href="#">Juguetes</a></li>
                         </ul>
+                    </li>
                     <li>
                         <a href="#" class="desktop-link">Otras mascota</a>
                         <input type="checkbox" id="show-otros">
@@ -102,8 +103,20 @@
                             </li>
                         </ul>
                     </li>
+                    <li><a href="{% url 'home_admin' %}">Menú administrador</a></li>
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="#">@{{ user.username }}</a>
                     </li>
-                    <li><a href="#">Iniciar sesión</a></li>
+                    <li>
+                        <a href="{% url 'logout' %}">Cerrar sesión</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">Iniciar sesión</a>
+                    </li>
+                    {% endif %}
+
                     <li><a href="#">Carrito</a></li>
                 </ul>
             </div>

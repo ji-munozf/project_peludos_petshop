@@ -141,7 +141,7 @@
                     <img src="{{ m.fotoProducto.url }}" alt="No hay imagen de producto" style="width:100%">
                     {% endif %}
                 </a>
-                <h3>{{ m.nomProducto }}</h3>
+                <h3>{{ m.nomProducto | title }}</h3>
                 <p class="price">${{ m.precio | intcomma }}</p>
                 <p><button type="button" class="btn btn-primary">Añadir al carrito</button></p>
             </div>
