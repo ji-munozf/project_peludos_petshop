@@ -1,9 +1,12 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
 from .models import Producto, TipoMascota, TipoProducto
+from .forms import CustomUserCreationForm
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required, permission_required
 
 # Create your views here.
 
@@ -11,6 +14,7 @@ def home(request):
 
     return render(request, 'peludos_petshop/menu_principal.html')
 
+@permission_required('peludos_petshop.view_producto')
 def home_admin(request):
 
     return render(request, 'peludos_petshop/Vista_admin/home_admin.html')
@@ -140,7 +144,24 @@ def alimentos_enlatados_perro(request):
 def detalle_producto(request, id):
     producto = Producto.objects.filter(idProducto = id).first()
     contexto = {"producto": producto}
+
     return render(request, 'peludos_petshop/Vista_usuario/detalle_producto.html', contexto)
 
+def registro_usuario(request):
+    data = {
+        'form': CustomUserCreationForm()
+    }
 
+    if request.method == 'POST':
+        formulario = CustomUserCreationForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username = formulario.cleaned_data["username"], password = formulario.cleaned_data["password1"])
+            login(request, user)
+            messages.success(request, "Te has registrado correctamente")
+            redirect(to="home")
+        
+        data["form"] = formulario
+
+    return render(request, 'registration/registro.html', data)
 

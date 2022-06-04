@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/menu_principal.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/boton_whatsapp.css' %}">
 </head>
 <body>
     <div class="wrapper">
@@ -32,7 +30,7 @@
                         <input type="checkbox" id="show-perros">
                         <label for="show-perros">Listado de productos</label>
                         <ul>
-                            <li><a href="#">Perros</a></li>
+                            <li><a href="{% url 'listar_productos_perro' %}">Perros</a></li>
                             <li><a href="#">Gatos</a></li>
                             <li><a href="#">Conejo</a></li>
                             <li><a href="#">Erizo</a></li>
@@ -41,22 +39,13 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#" class="desktop-link">Agregar productos</a>
-                        <input type="checkbox" id="show-gato">
-                        <label for="show-gato">Agregar productos</label>
-                        <ul>
-                            <li><a href="#">Perros</a></li>
-                            <li><a href="#">Gatos</a></li>
-                            <li><a href="#">Conejo</a></li>
-                            <li><a href="#">Erizo</a></li>
-                            <li><a href="#">Hasmter</a></li>
-                            <li><a href="#">Hurrón</a></li>
-                        </ul>
+                        <a href="{% url 'agregar_productos' %}">Agregar productos</a>
                     </li>
                     <li>
-                        <a href="#" class="desktop-link">Lista de contactos</a>
-                        <input type="checkbox" id="show-otros">
-                        <label for="show-otros">Lista de contactos</label>
+                        <a href="#">Lista de contactos</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'home' %}">Salir del menú administrador</a>
                     </li>
                 </ul>
             </div>

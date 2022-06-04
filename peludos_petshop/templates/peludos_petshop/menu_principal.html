@@ -103,7 +103,11 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="{% url 'home_admin' %}">Menú administrador</a></li>
+                    {% if perms.peludos_petshop.view_producto %}
+                    <li>
+                        <a href="{% url 'home_admin' %}">Menú administrador</a>
+                    </li>
+                    {% endif %}
                     {% if user.is_authenticated %}
                     <li>
                         <a href="#">@{{ user.username }}</a>

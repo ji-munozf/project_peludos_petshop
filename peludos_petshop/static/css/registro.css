@@ -1,15 +1,20 @@
 body {
     background: #ffe25f;
     background: linear-gradient(to right, #ffa751, #ffe259);
-    padding-top: 50px;
 }
 
 .bg {
-    background-image: url(/static/img/Dog_img.jpg);
+    background-image: url(/static/img/Hamster_img.jpg);
     background-position: center center;
 }
 
-.registrar {
+.aviso {
+    text-align: center;
+    font-size: 1.3rem;
+    padding-top: 1rem;
+}
+
+.login {
     text-decoration: none;
     color: #d45079;
     font-weight: 600;
@@ -31,7 +36,7 @@ body {
     border-color: #ac3e61;
 }
 
-.registrar:hover {
+.login:hover {
     color: #812f49;
 }
 
