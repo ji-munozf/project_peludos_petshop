@@ -15,10 +15,10 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'peludos_petshop/css/lista_productos.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'peludos_petshop/css/navbar.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'peludos_petshop/css/menu_principal.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'peludos_petshop/css/boton_whatsapp.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/lista_productos.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/menu_principal.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/boton_whatsapp.css' %}">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
             <input type="checkbox" id="show-menu">
             <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
             <div class="content">
-                <img src="{% static 'peludos_petshop/img/peludos_petshop_icon.png' %}" alt="Peludos">
+                <img src="{% static '/img/peludos_petshop_icon.png' %}" alt="Peludos">
                 <div class="logo"><a href="{% url 'home' %}">Peludos petshop</a></div>
                 <ul class="links">
                     <li>
@@ -47,11 +47,11 @@
                         <input type="checkbox" id="show-gato">
                         <label for="show-gato">Gatos</label>
                         <ul>
-                            <li><a href="/lista_productos_gato/alimentos_secos.html">Alimentos secos</a></li>
-                            <li><a href="/lista_productos_gato/alimentos_enlatados.html">Alimentos enlatados</a></li>
-                            <li><a href="/lista_productos_gato/arena_sanitarias.html">Arenas sanitarias</a></li>
-                            <li><a href="/lista_productos_gato/snack.html">Snack & premios</a></li>
-                            <li><a href="/lista_productos_gato/juguetes.html">Juguetes</a></li>
+                            <li><a href="{% url 'alimentos_secos_gato' %}">Alimentos secos</a></li>
+                            <li><a href="{% url 'alimentos_enlatados_gato' %}">Alimentos enlatados</a></li>
+                            <li><a href="{% url 'arena_sanitaria_gato' %}">Arenas sanitarias</a></li>
+                            <li><a href="{% url 'snack_gato' %}">Snack & premios</a></li>
+                            <li><a href="{% url 'juguete_gato' %}">Juguetes</a></li>
                         </ul>
                     <li>
                         <a href="#" class="desktop-link">Otras mascotas</a>
@@ -63,9 +63,9 @@
                                 <input type="checkbox" id="show-conejos">
                                 <label for="show-conejos">Conejos</label>
                                 <ul>
-                                    <li><a href="/lista_productos_otros_mascotas/conejos/alimentos.html">Alimentos</a>
+                                    <li><a href="{% url 'alimentos_conejo' %}">Alimentos</a>
                                     </li>
-                                    <li><a href="/lista_productos_otros_mascotas/conejos/accesorios.html">Accesorios</a>
+                                    <li><a href="{% url 'accesorios_conejo' %}">Accesorios</a>
                                     </li>
                                 </ul>
                             </li>
@@ -74,9 +74,9 @@
                                 <input type="checkbox" id="show-erizo">
                                 <label for="show-erizo">Erizo</label>
                                 <ul>
-                                    <li><a href="/lista_productos_otros_mascotas/erizo/alimentos.html">Alimentos</a>
+                                    <li><a href="{% url 'alimentos_erizo' %}">Alimentos</a>
                                     </li>
-                                    <li><a href="/lista_productos_otros_mascotas/erizo/accesorios.html">Accesorios</a>
+                                    <li><a href="{% url 'accesorios_erizo' %}">Accesorios</a>
                                     </li>
                                 </ul>
                             </li>
@@ -85,9 +85,9 @@
                                 <input type="checkbox" id="show-hamster">
                                 <label for="show-hamster">Hamster</label>
                                 <ul>
-                                    <li><a href="/lista_productos_otros_mascotas/hamster/alimentos.html">Alimentos</a>
+                                    <li><a href="{% url 'alimentos_hamster' %}">Alimentos</a>
                                     </li>
-                                    <li><a href="/lista_productos_otros_mascotas/hamster/accesorios.html">Accesorios</a>
+                                    <li><a href="{% url 'accesorios_hamster' %}">Accesorios</a>
                                     </li>
                                 </ul>
                             </li>
@@ -96,24 +96,35 @@
                                 <input type="checkbox" id="show-hurones">
                                 <label for="show-hurones">Hurones</label>
                                 <ul>
-                                    <li><a href="/lista_productos_otros_mascotas/hurones/alimentos.html">Alimentos</a>
+                                    <li><a href="{% url 'alimentos_hurron' %}">Alimentos</a>
                                     </li>
-                                    <li><a href="/lista_productos_otros_mascotas/hurones/accesorios.html">Accesorios</a>
+                                    <li><a href="{% url 'accesorios_hurron' %}">Accesorios</a>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
                     </li>
-                    <li><a href="#">Iniciar sesión</a></li>
-                    <li><a href="#">Carrito</a></li>
+                    {% if perms.peludos_petshop.view_producto %}
+                    <li>
+                        <a href="{% url 'home_admin' %}">Menú administrador</a>
+                    </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="#">@{{ user.username }}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">Cerrar sesión</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">Iniciar sesión</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
-            <label for="show-search" class="search-icon"><i class="fas fa-search"></i></label>
-            <form action="#" class="search-box">
-                <input type="text" placeholder="Type Something to Search..." required>
-                <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
-            </form>
+            <label for="show-search" class="search-icon"></label>
         </nav>
     </div>
 

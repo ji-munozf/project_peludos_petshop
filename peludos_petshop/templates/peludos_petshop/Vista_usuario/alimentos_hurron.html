@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hurrón - Alimentos</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/lista_productos.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/menu_principal.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/boton_whatsapp.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <nav>
+            <input type="checkbox" id="show-search">
+            <input type="checkbox" id="show-menu">
+            <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+            <div class="content">
+                <img src="{% static '/img/peludos_petshop_icon.png' %}" alt="Peludos">
+                <div class="logo"><a href="{% url 'home' %}">Peludos petshop</a></div>
+                <ul class="links">
+                    <li>
+                        <a href="#" class="desktop-link">Perros</a>
+                        <input type="checkbox" id="show-perros">
+                        <label for="show-perros">Perros</label>
+                        <ul>
+                            <li><a href="{% url 'alimentos_secos_perro' %}">Alimentos secos</a></li>
+                            <li><a href="{% url 'alimentos_enlatados_perro' %}">Alimentos enlatados</a></li>
+                            <li><a href="{% url 'snack_perro' %}">Snack & premios</a></li>
+                            <li><a href="{% url 'juguete_perro' %}">Juguetes</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="desktop-link">Gatos</a>
+                        <input type="checkbox" id="show-gato">
+                        <label for="show-gato">Gatos</label>
+                        <ul>
+                            <li><a href="{% url 'alimentos_secos_gato' %}">Alimentos secos</a></li>
+                            <li><a href="{% url 'alimentos_enlatados_gato' %}">Alimentos enlatados</a></li>
+                            <li><a href="{% url 'arena_sanitaria_gato' %}">Arenas sanitarias</a></li>
+                            <li><a href="{% url 'snack_gato' %}">Snack & premios</a></li>
+                            <li><a href="{% url 'juguete_gato' %}">Juguetes</a></li>
+                        </ul>
+                    <li>
+                        <a href="#" class="desktop-link">Otras mascotas</a>
+                        <input type="checkbox" id="show-otros">
+                        <label for="show-otros">Otras mascotas</label>
+                        <ul>
+                            <li>
+                                <a href="#" class="desktop-link-submenu">Conejos</a>
+                                <input type="checkbox" id="show-conejos">
+                                <label for="show-conejos">Conejos</label>
+                                <ul>
+                                    <li><a href="{% url 'alimentos_conejo' %}">Alimentos</a>
+                                    </li>
+                                    <li><a href="{% url 'accesorios_conejo' %}">Accesorios</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="desktop-link-submenu">Erizo</a>
+                                <input type="checkbox" id="show-erizo">
+                                <label for="show-erizo">Erizo</label>
+                                <ul>
+                                    <li><a href="{% url 'alimentos_erizo' %}">Alimentos</a>
+                                    </li>
+                                    <li><a href="{% url 'accesorios_erizo' %}">Accesorios</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="desktop-link-submenu">Hamster</a>
+                                <input type="checkbox" id="show-hamster">
+                                <label for="show-hamster">Hamster</label>
+                                <ul>
+                                    <li><a href="{% url 'alimentos_hamster' %}">Alimentos</a>
+                                    </li>
+                                    <li><a href="{% url 'accesorios_hamster' %}">Accesorios</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="desktop-link-submenu">Hurones</a>
+                                <input type="checkbox" id="show-hurones">
+                                <label for="show-hurones">Hurones</label>
+                                <ul>
+                                    <li><a href="{% url 'alimentos_hurron' %}">Alimentos</a>
+                                    </li>
+                                    <li><a href="{% url 'accesorios_hurron' %}">Accesorios</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    </li>
+                    {% if perms.peludos_petshop.view_producto %}
+                    <li>
+                        <a href="{% url 'home_admin' %}">Menú administrador</a>
+                    </li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="#">@{{ user.username }}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}">Cerrar sesión</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a href="{% url 'login' %}">Iniciar sesión</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <label for="show-search" class="search-icon"></label>
+        </nav>
+    </div>
+
+    <section class="section-products">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="header">
+                        <h1>Alimentos</h1>
+                        <h3>Para tu hurrón</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% load humanize %}
+    <div class="container">
+        <div class="row">
+            {% for m in entity %}
+            {% if m.tipoMascota.idMascota == 6 and m.tipoProducto.idTipoProducto == 6 %}
+            <div class="card">
+                <a href="/detalle_producto/{{m.idProducto}}">
+                    {% if m.fotoProducto %}
+                    <img src="{{ m.fotoProducto.url }}" alt="No hay imagen de producto" style="width:100%">
+                    {% endif %}
+                </a>
+                <h3>{{ m.nomProducto | title }}</h3>
+                <p class="price">${{ m.precio | intcomma }}</p>
+                <p><button type="button" class="btn btn-primary">Añadir al carrito</button></p>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div>
+        {% include 'peludos_petshop/paginador.html' %}
+    </div>
+
+    <a href="https://api.whatsapp.com/send?phone=930991227&text=Hola%20buenas.%20¡Necesito%20de%20su%20ayuda!"
+        class="float" target="_blank">
+        <i class="fa fa-whatsapp my-float"></i>
+    </a>
+
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>Peludos Petshop</h3>
+                <img src="{% static '/img/peludos_petshop_icon.png' %}" alt="Peludos">
+            </div>
+            <div class="box">
+                <h3>Redes sociales</h3>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+            </div>
+            <div class="box">
+                <h3>Envios</h3>
+                <a>Hacemos envios a todo Chile</a>
+            </div>
+            <div class="box">
+                <h3>Contacto</h3>
+                <a>+56 9 30991227</a>
+                <a>peludos_petshop@contacto.cl</a>
+                <a>Huechuraba, Chile</a>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

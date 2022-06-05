@@ -4,7 +4,9 @@ body {
 }
 
 .bg {
+    background-color: #d45079;
     background-image: url(/static/img/Hamster_img.jpg);
+    background-repeat: no-repeat;
     background-position: center center;
 }
 

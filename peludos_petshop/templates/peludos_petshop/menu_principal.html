@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/menu_principal.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/boton_whatsapp.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/lista_productos.css' %}">
 </head>
 
 <body>
@@ -45,11 +46,11 @@
                         <input type="checkbox" id="show-gato">
                         <label for="show-gato">Gatos</label>
                         <ul>
-                            <li><a href="#">Alimentos secos</a></li>
-                            <li><a href="#">Alimentos enlatados</a></li>
-                            <li><a href="#">Arena sanitaria</a></li>
-                            <li><a href="#">Snack & premios</a></li>
-                            <li><a href="#">Juguetes</a></li>
+                            <li><a href="{% url 'alimentos_secos_gato' %}">Alimentos secos</a></li>
+                            <li><a href="{% url 'alimentos_enlatados_gato' %}">Alimentos enlatados</a></li>
+                            <li><a href="{% url 'arena_sanitaria_gato' %}">Arenas sanitarias</a></li>
+                            <li><a href="{% url 'snack_gato' %}">Snack & premios</a></li>
+                            <li><a href="{% url 'juguete_gato' %}">Juguetes</a></li>
                         </ul>
                     </li>
                     <li>
@@ -62,9 +63,9 @@
                                 <input type="checkbox" id="show-conejos">
                                 <label for="show-conejos">Conejos</label>
                                 <ul>
-                                    <li><a href="#">Alimentos</a>
+                                    <li><a href="{% url 'alimentos_conejo' %}">Alimentos</a>
                                     </li>
-                                    <li><a href="#">Accesorios</a>
+                                    <li><a href="{% url 'accesorios_conejo' %}">Accesorios</a>
                                     </li>
                                 </ul>
                             </li>
@@ -73,9 +74,9 @@
                                 <input type="checkbox" id="show-erizo">
                                 <label for="show-erizo">Erizo</label>
                                 <ul>
-                                    <li><a href="#">Alimentos</a>
+                                    <li><a href="{% url 'alimentos_erizo' %}">Alimentos</a>
                                     </li>
-                                    <li><a href="#">Accesorios</a>
+                                    <li><a href="{% url 'accesorios_erizo' %}">Accesorios</a>
                                     </li>
                                 </ul>
                             </li>
@@ -84,9 +85,9 @@
                                 <input type="checkbox" id="show-hamster">
                                 <label for="show-hamster">Hamster</label>
                                 <ul>
-                                    <li><a href="#">Alimentos</a>
+                                    <li><a href="{% url 'alimentos_hamster' %}">Alimentos</a>
                                     </li>
-                                    <li><a href="#">Accesorios</a>
+                                    <li><a href="{% url 'accesorios_hamster' %}">Accesorios</a>
                                     </li>
                                 </ul>
                             </li>
@@ -95,9 +96,9 @@
                                 <input type="checkbox" id="show-hurones">
                                 <label for="show-hurones">Hurones</label>
                                 <ul>
-                                    <li><a href="#">Alimentos</a>
+                                    <li><a href="{% url 'alimentos_hurron' %}">Alimentos</a>
                                     </li>
-                                    <li><a href="#">Accesorios</a>
+                                    <li><a href="{% url 'accesorios_hurron' %}">Accesorios</a>
                                     </li>
                                 </ul>
                             </li>
@@ -119,16 +120,13 @@
                     <li>
                         <a href="{% url 'login' %}">Iniciar sesión</a>
                     </li>
+                    <li>
+                        <a href="{% url 'registro_usuario' %}">Registrarse</a>
+                    </li>
                     {% endif %}
-
-                    <li><a href="#">Carrito</a></li>
                 </ul>
             </div>
             <label for="show-search" class="search-icon"></label>
-            <form action="#" method="get" class="search-box">
-                <input type="text" placeholder="¿Que es lo que buscas?" required>
-                <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
-            </form>
         </nav>
     </div>
 
@@ -141,6 +139,22 @@
                     y a un
                     buen precio. <br>
                     ¡No lo dudes!.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <h1 class="heading"> <span> Disponemos productos </span> para estas mascotas </h1>
+        <div class="container">
+            <div class="row">
+                {% for m in mascotas %}
+                <div class="card" style="border: none;">
+                    {% if m.fotoMascota %}
+                    <img src="{{ m.fotoMascota.url }}" width="100%" alt="No hay imagen de la mascota">
+                    {% endif %}
+                    <h2 style="font-size: 25px; padding-top: 10px;">{{ m.nomTipoMascota | title }}</h2>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -160,7 +174,7 @@
 
     <section class="icons-container">
         <div class="icons">
-            <img src="{% static 'peludos_petshop/img/icon-1.png' %}" alt="">
+            <img src="{% static '/img/icon-1.png' %}" alt="">
             <div class="info">
                 <h3>Hacemos envíos</h3>
                 <span>a todo Chile</span>
@@ -174,7 +188,7 @@
             </div>
         </div>
         <div class="icons">
-            <img src="{% static 'peludos_petshop/img/icon-3.png' %}" alt="">
+            <img src="{% static '/img/icon-3.png' %}" alt="">
             <div class="info">
                 <h3>Pago protegido</h3>
                 <span>podras pagar tus productos de forma segura</span>
@@ -182,14 +196,14 @@
         </div>
     </section>
 
-    <section class="contact" id="contact">
+    <section class="contact" id="contact" style="margin-bottom: 50px;">
         <h1 class="heading"> <span> ¿Tienes una duda? </span> Contactanos </h1>
         <div class="row">
 
             {% if messages %}
             <div>
                 {% for i in messages %}
-                    <p style="color: green; font-size: 20px;">{{ i }}</p>
+                <p style="color: green; font-size: 20px;">{{ i }}</p>
                 {% endfor %}
             </div>
 
@@ -197,15 +211,22 @@
 
             <form action="{% url 'registro_contacto' %}" method="POST" id="contact">
                 {% csrf_token %}
-                <input type="text" placeholder="Nombre" id="nom_contacto" pattern="[A-Za-z\u00f1\u00d1 ]+"
+                <label for="nombre" style="font-size: 18px;">Nombre:</label>
+                <input type="text" id="nom_contacto" pattern="[A-Za-z\u00f1\u00d1 ]+"
                     title="Solo se permiten letras y espacios" maxlength="60" required class="box" name="nom_contacto">
-                <input type="email" placeholder="Correo" id="email"
+                <label for="nombre" style="font-size: 18px;">Correo:</label>
+                <input type="email" placeholder="example@domino.algo" id="email"
                     pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
-                    title="El correo debe ser de la siguiente manera: example@domino.algo" required class="box" name="email">
-                <input type="number" placeholder="Número celular" id="number" name="number" required class="box">
-                <input type="text" placeholder="Asunto" id="asunto" name="asunto" pattern="[A-Za-z\u00f1\u00d1 ]+"
+                    title="El correo debe ser de la siguiente manera: example@domino.algo" required class="box"
+                    name="email">
+                <label for="nombre" style="font-size: 18px;">Número celular:</label>
+                <input type="number" placeholder="Ingrese solo los 8 dígitos de su número" id="number" name="number" required class="box" min="8" max="8">
+                <label for="nombre" style="font-size: 18px;">Asunto:</label>
+                <input type="text" id="asunto" name="asunto" pattern="[A-Za-z\u00f1\u00d1 ]+"
                     title="Solo se permiten letras y espacios" maxlength="50" required class="box">
-                <textarea name="mensaje" class="box" placeholder="Mensaje" required id="mensaje" name="mensaje" cols="30" rows="10"></textarea>
+                <label for="nombre" style="font-size: 18px;">Mensaje:</label>
+                <textarea name="mensaje" class="box" required id="mensaje" name="mensaje"
+                    cols="30" rows="10"></textarea>
                 <input type="submit" id="send" value="Enviar mensaje" class="btn">
                 <p class="aviso" id="aviso"></p>
             </form>
@@ -228,7 +249,7 @@
         <div class="box-container">
             <div class="box">
                 <h3>Peludos Petshop</h3>
-                <img src="{% static 'peludos_petshop/img/peludos_petshop_icon.png' %}" alt="Peludos">
+                <img src="{% static '/img/peludos_petshop_icon.png' %}" alt="Peludos">
             </div>
             <div class="box">
                 <h3>Redes sociales</h3>
@@ -248,6 +269,7 @@
             </div>
         </div>
     </section>
+
 </body>
 
 </html>

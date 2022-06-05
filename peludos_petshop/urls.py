@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import home, alimentos_secos_perro, alimentos_enlatados_perro, snack_perro, juguete_perro, \
-     detalle_producto, home_admin, listar_productos_perro, listar_mascota_productos, registar_producto, eliminar_producto, modificar_productos, modificar, registro_usuario, \
-     registrar_contacto, lista_contactos, eliminar_contacto
+from .views import home, alimentos_secos_perro, alimentos_enlatados_perro, snack_perro, juguete_perro, alimentos_secos_gato, alimentos_enlatados_gato, arena_sanitaria_gato, \
+    snack_gato, juguete_gato, alimentos_conejo, accesorios_conejo, alimentos_erizo, accesorios_erizo, alimentos_hamster, accesorios_hamster, alimentos_hurron, accesorios_hurron, \
+    detalle_producto, home_admin, listar_productos_perro, listar_mascota_productos, registar_producto, eliminar_producto, modificar_productos, modificar, registro_usuario, \
+    registrar_contacto, lista_contactos, eliminar_contacto
 
 urlpatterns = [
     path('', home, name="home"),
@@ -10,6 +11,19 @@ urlpatterns = [
     path('alimentos_enlatados_perro/', alimentos_enlatados_perro, name="alimentos_enlatados_perro"),
     path('snack_perro/', snack_perro, name="snack_perro"),
     path('juguete_perro/', juguete_perro, name="juguete_perro"),
+    path('alimentos_secos_gato/', alimentos_secos_gato, name="alimentos_secos_gato"),
+    path('alimentos_enlatados_gato/', alimentos_enlatados_gato, name="alimentos_enlatados_gato"),
+    path('arena_sanitaria_gato/', arena_sanitaria_gato, name="arena_sanitaria_gato"),
+    path('snack_gato/', snack_gato, name="snack_gato"),
+    path('juguete_gato/', juguete_gato, name="juguete_gato"),
+    path('alimentos_conejo/', alimentos_conejo, name="alimentos_conejo"),
+    path('accesorios_conejo/', accesorios_conejo, name="accesorios_conejo"),
+    path('alimentos_erizo/', alimentos_erizo, name="alimentos_erizo"),
+    path('accesorios_erizo/', accesorios_erizo, name="accesorios_erizo"),
+    path('alimentos_hamster/', alimentos_hamster, name="alimentos_hamster"),
+    path('accesorios_hamster/', accesorios_hamster, name="accesorios_hamster"),
+    path('alimentos_hurron/', alimentos_hurron, name="alimentos_hurron"),
+    path('accesorios_hurron/', accesorios_hurron, name="accesorios_hurron"),
     path('detalle_producto/<str:id>', detalle_producto, name="detalle_producto"),
     path('listar_productos_perro', listar_productos_perro, name="listar_productos_perro"),
     path('agregar_productos', listar_mascota_productos, name="agregar_productos"),

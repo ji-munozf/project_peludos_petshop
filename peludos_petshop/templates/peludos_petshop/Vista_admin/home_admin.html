@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     {% load static %}
     <meta charset="UTF-8">
@@ -13,8 +14,9 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'peludos_petshop/css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/navbar_admin.css' %}">
 </head>
+
 <body>
     <div class="wrapper">
         <nav>
@@ -22,7 +24,7 @@
             <input type="checkbox" id="show-menu">
             <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
             <div class="content">
-                <img src="{% static 'peludos_petshop/img/peludos_petshop_icon.png' %}" alt="Peludos">
+                <img src="{% static '/img/peludos_petshop_icon_admin.png' %}" alt="Peludos">
                 <div class="logo"><a href="{% url 'home_admin' %}">Peludos petshop</a></div>
                 <ul class="links">
                     <li>
@@ -55,18 +57,19 @@
                 <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
             </form>
         </nav>
-    </div>  
+    </div>
 
-    <div class="container-fluid" style="padding: 350px; text-align: center; align-items: center;">
+    <div class="container" style="padding-top: 350px; text-align: center; align-items: center;">
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-10">
-                <h1 style="font-size: 70px; color: #d45079; font-weight: 700;">¡Bienvenido administrador!</h1>
-                <h3 style="color: #cc4b74; font-weight: 700;">Peludos petshop administrator</h3>
+                <h1 style="font-size: 70px; color: #fff; font-weight: 700;">¡Bienvenido administrador!</h1>
+                <h3 style="color: #fff; font-weight: 700;">Peludos petshop administrator</h3>
             </div>
             <div class="col-md-1"></div>
         </div>
     </div>
 
 </body>
+
 </html>

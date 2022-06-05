@@ -26,9 +26,18 @@
 
             <div class="col bg-white p-5 rounded-end">
                 <div class="text-end">
-                    <img src="{% static '/img/peludos_petshop_icon_black.png' %}" width="60px" alt=" No hay logo">
+                    <img src="{% static '/img/peludos_petshop_icon_registro.png' %}" width="60px" alt=" No hay logo">
                 </div>
-                <h1 class="fw-bold text-center py-5">Unete a nuestra página</h1>
+                <h1 class="fw-bold text-center py-5" style="color: #d45079;">Unete a nuestra página</h1>
+
+                {% if messages %}
+                <div>
+                    {% for i in messages %}
+                    <p style="color: green; font-size: 20px;">{{ i }}</p>
+                    {% endfor %}
+                </div>
+
+                {% endif %}
 
                 <form action="#" method="POST">
                     {% csrf_token %}
@@ -42,8 +51,10 @@
                     </div>
 
                     <div class="my-3">
-                        <span>¿Ya tienes una cuenta? <a href="{% url 'login' %}" class="login">Iniciar sesión</a></span> <br>
-                        <span>¿Deseas volver al menú principal? <a href="{% url 'home' %}" class="volver_home">Volver al inicio</a></span>
+                        <span>¿Ya tienes una cuenta? <a href="{% url 'login' %}" class="login">Iniciar sesión</a></span>
+                        <br>
+                        <span>¿Deseas volver al menú principal? <a href="{% url 'home' %}" class="volver_home">Volver al
+                                inicio</a></span>
                     </div>
                 </form>
             </div>

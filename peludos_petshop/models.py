@@ -6,6 +6,7 @@ from django.db import models
 class TipoMascota(models.Model):
     idMascota = models.AutoField(primary_key=True, verbose_name="ID de mascota")
     nomTipoMascota = models.CharField(max_length=50, verbose_name="Nombre tipo de las mascotas")
+    fotoMascota = models.ImageField(upload_to="mascotas", null=True)
 
     def __str__(self):
         return self.nomTipoMascota
