@@ -42,7 +42,7 @@ section{
     display: flex;
     align-items: center;
     min-height: 100vh;
-    background: url(/static/img/home-bg.jpg) no-repeat ;
+    background: url(static/peludos_petshop/img/home-bg.jpg) no-repeat ;
     background-size: cover;
     background-position: center;
 }
