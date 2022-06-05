@@ -1,6 +1,7 @@
+from urllib import request
 from django.http import Http404
 from django.shortcuts import render, redirect
-from .models import Producto, TipoMascota, TipoProducto
+from .models import Producto, TipoMascota, TipoProducto, Contacto
 from .forms import CustomUserCreationForm
 from django.core.paginator import Paginator
 from django.http import Http404
@@ -11,8 +12,25 @@ from django.contrib.auth.decorators import login_required, permission_required
 # Create your views here.
 
 def home(request):
+    contactos = Contacto.objects.all()
+    contexto = {
+        "contacto": contactos
+    }
 
-    return render(request, 'peludos_petshop/menu_principal.html')
+    return render(request, 'peludos_petshop/menu_principal.html', contexto)
+
+def registrar_contacto(request):
+    nombre_contacto = request.POST['nom_contacto']
+    correo_contacto = request.POST['email']
+    num_celular = request.POST['number']
+    asunto_contacto = request.POST['asunto']
+    mensaje_contacto = request.POST['mensaje']
+
+    Contacto.objects.create(nombreContacto = nombre_contacto, correoContacto = correo_contacto, numCelularContacto = num_celular, asunto = asunto_contacto, mensajeContacto = mensaje_contacto) 
+
+    messages.success(request,'Contacto enviado correctamente')
+
+    return redirect('home')
 
 @permission_required('peludos_petshop.view_producto')
 def home_admin(request):
@@ -107,12 +125,27 @@ def modificar(request):
 
     return redirect('listar_productos_perro')
 
+def lista_contactos(request):
+    listado = Contacto.objects.all()
+    contexto = {
+        "listado": listado  
+    }
+
+    return render(request, 'peludos_petshop/vista_admin/listar_contactos.html', contexto)
+
+def eliminar_contacto(request, id_contacto):
+    listado1 = Contacto.objects.get(idContacto = id_contacto)
+    listado1.delete() 
+    messages.success(request,'contacto eliminado')
+
+    return redirect('lista_contactos')
+
 def alimentos_secos_perro(request):
     productos = Producto.objects.all().order_by('nomProducto')
     page = request.GET.get('page', 1)
 
     try:
-        paginator = Paginator(productos, 10)
+        paginator = Paginator(productos, 9)
         productos = paginator.page(page)
     except:
         raise Http404
@@ -129,7 +162,7 @@ def alimentos_enlatados_perro(request):
     page = request.GET.get('page', 1)
 
     try:
-        paginator = Paginator(productos, 10)
+        paginator = Paginator(productos, 9)
         productos = paginator.page(page)
     except:
         raise Http404
@@ -140,6 +173,40 @@ def alimentos_enlatados_perro(request):
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/alimentos_enlatados_perro.html',contexto)
+
+def snack_perro(request):
+    productos = Producto.objects.all().order_by('nomProducto')
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(productos, 9)
+        productos = paginator.page(page)
+    except:
+        raise Http404
+
+    contexto = {
+        "entity": productos,
+        "paginator": paginator
+    }
+
+    return render(request, 'peludos_petshop/Vista_usuario/snack_perro.html',contexto)
+
+def juguete_perro(request):
+    productos = Producto.objects.all().order_by('nomProducto')
+    page = request.GET.get('page', 1)
+
+    try:
+        paginator = Paginator(productos, 9)
+        productos = paginator.page(page)
+    except:
+        raise Http404
+
+    contexto = {
+        "entity": productos,
+        "paginator": paginator
+    }
+
+    return render(request, 'peludos_petshop/Vista_usuario/juguete_perro.html',contexto)
 
 def detalle_producto(request, id):
     producto = Producto.objects.filter(idProducto = id).first()

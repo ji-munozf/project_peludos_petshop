@@ -14,9 +14,9 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/menu_principal.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/boton_whatsapp.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'peludos_petshop/css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'peludos_petshop/css/menu_principal.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'peludos_petshop/css/boton_whatsapp.css' %}">
 </head>
 
 <body>
@@ -26,7 +26,7 @@
             <input type="checkbox" id="show-menu">
             <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
             <div class="content">
-                <img src="{% static '/img/peludos_petshop_icon.png' %}" alt="Peludos">
+                <img src="{% static 'peludos_petshop/img/peludos_petshop_icon.png' %}" alt="Peludos">
                 <div class="logo"><a href="{% url 'home' %}">Peludos petshop</a></div>
                 <ul class="links">
                     <li>
@@ -35,9 +35,9 @@
                         <label for="show-perros">Perros</label>
                         <ul>
                             <li><a href="{% url 'alimentos_secos_perro' %}">Alimentos secos</a></li>
-                            <li><a href="#">Alimentos enlatados</a></li>
-                            <li><a href="#">Snack & premios</a></li>
-                            <li><a href="#">Juguetes</a></li>
+                            <li><a href="{% url 'alimentos_enlatados_perro' %}">Alimentos enlatados</a></li>
+                            <li><a href="{% url 'snack_perro' %}">Snack & premios</a></li>
+                            <li><a href="{% url 'juguete_perro' %}">Juguetes</a></li>
                         </ul>
                     </li>
                     <li>
@@ -160,21 +160,21 @@
 
     <section class="icons-container">
         <div class="icons">
-            <img src="{% static '/img/icon-1.png' %}" alt="">
+            <img src="{% static 'peludos_petshop/img/icon-1.png' %}" alt="">
             <div class="info">
                 <h3>Hacemos envíos</h3>
                 <span>a todo Chile</span>
             </div>
         </div>
         <div class="icons">
-            <img src="{% static '/img/icon-2.png' %}" alt="">
+            <img src="{% static 'peludos_petshop/img/icon-2.png' %}" alt="">
             <div class="info">
                 <h3>Descuentos especiales</h3>
                 <span>en nuestros precios</span>
             </div>
         </div>
         <div class="icons">
-            <img src="{% static '/img/icon-3.png' %}" alt="">
+            <img src="{% static 'peludos_petshop/img/icon-3.png' %}" alt="">
             <div class="info">
                 <h3>Pago protegido</h3>
                 <span>podras pagar tus productos de forma segura</span>
@@ -185,23 +185,36 @@
     <section class="contact" id="contact">
         <h1 class="heading"> <span> ¿Tienes una duda? </span> Contactanos </h1>
         <div class="row">
-            <form action="" method="POST" id="contact">
-                <input type="text" placeholder="Nombre" id="nombre" pattern="[A-Za-z\u00f1\u00d1 ]+"
-                    title="Solo se permiten letras y espacios" maxlength="60" required class="box">
+
+            {% if messages %}
+            <div>
+                {% for i in messages %}
+                    <p style="color: green; font-size: 20px;">{{ i }}</p>
+                {% endfor %}
+            </div>
+
+            {% endif %}
+
+            <form action="{% url 'registro_contacto' %}" method="POST" id="contact">
+                {% csrf_token %}
+                <input type="text" placeholder="Nombre" id="nom_contacto" pattern="[A-Za-z\u00f1\u00d1 ]+"
+                    title="Solo se permiten letras y espacios" maxlength="60" required class="box" name="nom_contacto">
                 <input type="email" placeholder="Correo" id="email"
                     pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
-                    title="El correo debe ser de la siguiente manera: example@domino.algo" required class="box">
-                <input type="number" placeholder="Número celular" id="number" required class="box">
-                <input type="text" placeholder="Asunto" id="nombre" pattern="[A-Za-z\u00f1\u00d1 ]+"
+                    title="El correo debe ser de la siguiente manera: example@domino.algo" required class="box" name="email">
+                <input type="number" placeholder="Número celular" id="number" name="number" required class="box">
+                <input type="text" placeholder="Asunto" id="asunto" name="asunto" pattern="[A-Za-z\u00f1\u00d1 ]+"
                     title="Solo se permiten letras y espacios" maxlength="50" required class="box">
-                <textarea name="mensaje" class="box" placeholder="Mensaje" required id="mensaje" cols="30" rows="10"></textarea>
+                <textarea name="mensaje" class="box" placeholder="Mensaje" required id="mensaje" name="mensaje" cols="30" rows="10"></textarea>
                 <input type="submit" id="send" value="Enviar mensaje" class="btn">
                 <p class="aviso" id="aviso"></p>
             </form>
+
             <div class="image">
-                <img src="{% static '/img/Contacto.jpg' %}" alt="">
+                <img src="{% static 'peludos_petshop/img/Contacto.jpg' %}" alt="">
             </div>
         </div>
+
     </section>
 
     <!-- API Whatsapp -->
@@ -215,7 +228,7 @@
         <div class="box-container">
             <div class="box">
                 <h3>Peludos Petshop</h3>
-                <img src="{% static '/img/peludos_petshop_icon.png' %}" alt="Peludos">
+                <img src="{% static 'peludos_petshop/img/peludos_petshop_icon.png' %}" alt="Peludos">
             </div>
             <div class="box">
                 <h3>Redes sociales</h3>

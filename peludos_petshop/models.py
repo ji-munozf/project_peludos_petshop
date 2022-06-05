@@ -30,3 +30,14 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nomProducto
+
+class Contacto(models.Model):
+    idContacto = models.AutoField(primary_key=True, verbose_name="ID de contacto")
+    nombreContacto = models.CharField(max_length=100, verbose_name="Nombre de contacto")
+    correoContacto = models.EmailField(verbose_name="Correo de contacto")
+    numCelularContacto = models.IntegerField(verbose_name="Número de contacto")
+    asunto = models.CharField(max_length=50, verbose_name="Asunto contacto")
+    mensajeContacto = models.TextField(verbose_name="Descripción del producto")
+
+    def __str__(self):
+        return self.nombreContacto

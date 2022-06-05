@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.section-products {
+  padding: 100px 0 20px 0;
+}
+
+.section-products .header {
+  margin: 1 0px;
+}
+
+.section-products .header h1 {
+  font-size: 60px;
+  color: #FE6240;
+  font-weight: 500px;
+}
+
+.section-products .header h3 {
+  color: #444444;
+  font-size: 30px; 
+}
+
+.card {
+  box-shadow: 0 4px px 0 #444444;
+  max-width: 350px;
+  margin: 15px;
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.card img {
+  width: 100%
+}
+
+.card h4 {
+  color: #000;
+  justify-content: center;
+}
+
+.price {
+  color: grey;
+  font-size: 20px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #d45079;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+  
+.card button:hover {
+  opacity: 0.7;
+}

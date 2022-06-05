@@ -14,9 +14,9 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/lista_productos.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/menu_principal.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'peludos_petshop/css/lista_productos.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'peludos_petshop/css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'peludos_petshop/css/menu_principal.css' %}">
 </head>
 <body>
     <div class="wrapper">
@@ -25,7 +25,7 @@
             <input type="checkbox" id="show-menu">
             <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
             <div class="content">
-                <img src="{% static '/img/peludos_petshop_icon.png' %}" alt="Peludos">
+                <img src="{% static 'peludos_petshop/img/peludos_petshop_icon.png' %}" alt="Peludos">
                 <div class="logo"><a href="{% url 'home_admin' %}">Peludos petshop</a></div>
                 <ul class="links">
                     <li>
@@ -42,14 +42,13 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="{% url 'agregar_productos' %}" class="desktop-link">Agregar productos</a>
-                        <input type="checkbox" id="show-gato">
-                        <label for="show-gato">Agregar productos</label>
+                        <a href="{% url 'agregar_productos' %}">Agregar productos</a>
                     </li>
                     <li>
-                        <a href="#" class="desktop-link">Lista de contactos</a>
-                        <input type="checkbox" id="show-otros">
-                        <label for="show-otros">Lista de contactos</label>
+                        <a href="{% url 'lista_contactos' %}">Lista de contactos</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'home' %}">Salir del menú administrador</a>
                     </li>
                 </ul>
             </div>

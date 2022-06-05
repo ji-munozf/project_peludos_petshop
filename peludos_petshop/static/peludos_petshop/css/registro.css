@@ -1,0 +1,45 @@
+body {
+    background: #ffe25f;
+    background: linear-gradient(to right, #ffa751, #ffe259);
+}
+
+.bg {
+    background-image: url(/static/img/Hamster_img.jpg);
+    background-position: center center;
+}
+
+.aviso {
+    text-align: center;
+    font-size: 1.3rem;
+    padding-top: 1rem;
+}
+
+.login {
+    text-decoration: none;
+    color: #d45079;
+    font-weight: 600;
+}
+
+.volver_home {
+    text-decoration: none;
+    color: #d45079;
+    font-weight: 600;
+}
+
+.d-grid .btn {
+    background-color: #d45079;
+    border-color: #d45079;
+}
+
+.d-grid .btn:hover {
+    background-color: #ac3e61;
+    border-color: #ac3e61;
+}
+
+.login:hover {
+    color: #812f49;
+}
+
+.volver_home:hover {
+    color: #812f49;
+}

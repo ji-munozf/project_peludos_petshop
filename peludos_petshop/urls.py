@@ -1,11 +1,15 @@
 from django.urls import path
-from .views import home, alimentos_secos_perro, alimentos_enlatados_perro, detalle_producto, home_admin, listar_productos_perro, listar_mascota_productos, \
-     registar_producto, eliminar_producto, modificar_productos, modificar, registro_usuario
+from .views import home, alimentos_secos_perro, alimentos_enlatados_perro, snack_perro, juguete_perro, \
+     detalle_producto, home_admin, listar_productos_perro, listar_mascota_productos, registar_producto, eliminar_producto, modificar_productos, modificar, registro_usuario, \
+     registrar_contacto, lista_contactos, eliminar_contacto
+
 urlpatterns = [
     path('', home, name="home"),
     path('home_admin/', home_admin, name="home_admin"),
     path('alimentos_secos_perro/', alimentos_secos_perro, name="alimentos_secos_perro"),
     path('alimentos_enlatados_perro/', alimentos_enlatados_perro, name="alimentos_enlatados_perro"),
+    path('snack_perro/', snack_perro, name="snack_perro"),
+    path('juguete_perro/', juguete_perro, name="juguete_perro"),
     path('detalle_producto/<str:id>', detalle_producto, name="detalle_producto"),
     path('listar_productos_perro', listar_productos_perro, name="listar_productos_perro"),
     path('agregar_productos', listar_mascota_productos, name="agregar_productos"),
@@ -14,4 +18,7 @@ urlpatterns = [
     path('modificar_productos/<int:id>', modificar_productos, name="modificar_productos"),
     path('modificar', modificar, name="modificar"),
     path('registro_usuario', registro_usuario, name="registro_usuario"),
+    path('registro_contacto', registrar_contacto, name="registro_contacto"),
+    path('Listado_contactos', lista_contactos, name="lista_contactos"),
+    path('eliminar_contacto/<int:id_contacto>',eliminar_contacto, name="eliminar_contacto"),
 ]
