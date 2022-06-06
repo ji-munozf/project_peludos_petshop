@@ -144,7 +144,7 @@
     {% load humanize %}
     <div class="container">
         <div class="row">
-            {% for m in entity %}
+            {% for m in productos %}
             {% if m.tipoMascota.idMascota == 2 and m.tipoProducto.idTipoProducto == 2 %}
             <div class="card">
                 <a href="/detalle_producto/{{m.idProducto}}">
@@ -153,16 +153,13 @@
                     {% endif %}
                 </a>
                 <h3>{{ m.nomProducto | title }}</h3>
-                <p class="price">${{ m.precio | intcomma }}</p>
+                <p class="price">Precio: ${{ m.precio | intcomma }}</p>
+                <p class="price">Stock: {{ m.stock }} unidades</p>
                 <p><button type="button" class="btn btn-primary">Añadir al carrito</button></p>
             </div>
             {% endif %}
             {% endfor %}
         </div>
-    </div>
-
-    <div>
-        {% include 'peludos_petshop/paginador.html' %}
     </div>
 
     <a href="https://api.whatsapp.com/send?phone=930991227&text=Hola%20buenas.%20¡Necesito%20de%20su%20ayuda!"

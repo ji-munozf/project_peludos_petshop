@@ -26,17 +26,7 @@
                 <div class="logo"><a href="{% url 'home_admin' %}">Peludos petshop</a></div>
                 <ul class="links">
                     <li>
-                        <a href="#" class="desktop-link">Listado de productos</a>
-                        <input type="checkbox" id="show-perros">
-                        <label for="show-perros">Listado de productos</label>
-                        <ul>
-                            <li><a href="{% url 'listar_productos_perro' %}">Perros</a></li>
-                            <li><a href="#">Gatos</a></li>
-                            <li><a href="#">Conejo</a></li>
-                            <li><a href="#">Erizo</a></li>
-                            <li><a href="#">Hasmter</a></li>
-                            <li><a href="#">Hurrón</a></li>
-                        </ul>
+                        <a href="{% url 'listar_productos' %}" class="desktop-link">Listado de productos</a>
                     </li>
                     <li>
                         <a href="{% url 'agregar_productos' %}">Agregar productos</a>
@@ -63,79 +53,33 @@
                 <div class="col-md-8 col-lg-6">
                     <div class="header">
                         <h1>Agregar productos</h1>
-                        <h3>Perro</h3>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    {% load crispy_forms_tags %}
     <div class="container" style="font-size: 20px;">
         <div class="row">
             {% if messages %}
             <div>
                 {% for i in messages %}
-                    <p style="color: red;">{{ i }}</p>
+                    <p style="color: green;">{{ i }}</p>
                 {% endfor %}
             </div>
 
             {% endif %}
 
-            <form action="{% url 'registro' %}" id="formulario_registro" method="POST" enctype="multipart/form-data" style="padding-bottom: 50px;">
+            <form action="" id="formulario_registro" method="POST" enctype="multipart/form-data" style="padding-bottom: 50px;">
                 {% csrf_token %}
-                <div class="form-group" style="padding-bottom: 10px;">
-                    <label for="id_producto" style="font-size: 20px;">ID del producto: </label>
-                    <input class="form-control" type="number" id="id_producto" name="id_producto" style="font-size: 20px;" required>
-                </div>
-
-                <div class="form-group" style="padding-bottom: 10px;">
-                    <label for="nombre" style="font-size: 20px;">Nombre del producto: </label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" style="font-size: 20px;" required>
-                </div>
-
-                <div class="form-group" style="padding-bottom: 10px;">
-                    <label for="precio" style="font-size: 20px;">Precio del producto: </label>
-                    <input class="form-control" type="number" id="precio" name="precio" style="font-size: 20px;" required>
-                </div>
-
-                <div class="form-group" style="padding-bottom: 10px;">
-                    <label for="stock" style="font-size: 20px;">Stock del producto: </label>
-                    <input class="form-control" type="number" id="stock" name="stock" style="font-size: 20px;" required>
-                </div>
-
-                <div class="form-group" style="padding-bottom: 10px;">
-                    <label for="precio" style="font-size: 20px;">Precio del producto: </label>
-                    <textarea class="form-control" name="descripcion" id="descripcion" cols="30" rows="10" style="font-size: 20px;" required></textarea>
-                </div>
-
-                <div class="form-group" style="padding-bottom: 10px;">
-                    <label for="foto_m" style="font-size: 20px;">Foto del producto: </label>
-                    <input type="file" name="foto_m" id="foto_m" style="font-size: 20px;">
-                </div>
-
-                <div class="form-group" style="padding-bottom: 10px;">
-                    <label style="font-size: 20px;">Tipo de mascota: </label>
-                    <select class="form-control" style="font-size: 20px;" name="tip_mascota" id="tip_mascota">
-                        {% for i in tipo_m %}
-                            <option value="{{ i.idMascota }}">{{ i.nomTipoMascota }}</option>
-                        {% endfor %}
-                        
-                    </select>
-                </div>
-
-                <div class="form-group" style="padding-bottom: 10px;">
-                    <label style="font-size: 20px;">Tipo de producto: </label>
-                    <select class="form-control" style="font-size: 20px;" name="tip_producto" id="tip_producto">
-                        {% for i in tipo_p %}
-                            <option value="{{ i.idTipoProducto }}">{{ i.nomTipoProducto }}</option>
-                        {% endfor %}
-                        
-                    </select>
-                </div>
+                
+                {{ form | crispy }}
 
                 <button type="submit" style="background-color: #d45079; border-color: #d45079;" class="btn btn-primary">Registrar producto</button>
-
-
+                <a href="{% url 'home_admin' %}">
+                    <button type="button" class="btn btn-primary" style="background-color: #d45079; border-color: #d45079;">Volver al menú administrador</button>
+                </a>
             </form>
 
 </body>

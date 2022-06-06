@@ -144,7 +144,7 @@
     {% load humanize %}
     <div class="container">
         <div class="row">
-            {% for m in entity %}
+            {% for m in productos %}
             {% if m.tipoMascota.idMascota == 1 and m.tipoProducto.idTipoProducto == 9 %}
             <div class="card">
                 <a href="/detalle_producto/{{m.idProducto}}">
@@ -154,6 +154,7 @@
                 </a>
                 <h4>{{ m.nomProducto | title }}</h4>
                 <p class="price">Precio: ${{ m.precio | intcomma }}</p>
+                <p class="price">Stock: {{ m.stock }} unidades</p>
                 <p><button type="button" class="btn btn-primary">Añadir al carrito</button></p>
             </div>
             {% endif %}

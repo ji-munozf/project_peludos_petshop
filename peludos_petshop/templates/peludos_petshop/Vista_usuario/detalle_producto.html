@@ -127,6 +127,7 @@
             <label for="show-search" class="search-icon"></label>
         </nav>
     </div>
+    {% load humanize %}
     <div class="detalle-producto">
         <div class=" mb-3">
             <div class="row g-0">
@@ -138,7 +139,7 @@
                     <div class="card-body">
                         <h2 class="card-title">{{producto.nomProducto}}</h2>
                         <p class="card-text">ID: {{producto.idProducto}}</p>
-                        <p class="card-text">Precio: ${{producto.precio}}</p>
+                        <p class="card-text">Precio: ${{producto.precio | intcomma }}</p>
                         <p class="card-text">Stock: {{producto.stock}} unidades</p>
                         <button type="button" class="btn btn-primary">Añadir al carrito</button>
                     </div>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar - {{ producto.nomProducto }}</title>
+    <title>Modificar producto</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -14,9 +14,8 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'peludos_petshop/css/lista_productos.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'peludos_petshop/css/navbar.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'peludos_petshop/css/menu_principal.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/lista_productos.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
 </head>
 <body>
     <div class="wrapper">
@@ -25,21 +24,11 @@
             <input type="checkbox" id="show-menu">
             <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
             <div class="content">
-                <img src="{% static 'peludos_petshop/img/peludos_petshop_icon.png' %}" alt="Peludos">
+                <img src="{% static '/img/peludos_petshop_icon.png' %}" alt="Peludos">
                 <div class="logo"><a href="{% url 'home_admin' %}">Peludos petshop</a></div>
                 <ul class="links">
                     <li>
-                        <a href="#" class="desktop-link">Listado de productos</a>
-                        <input type="checkbox" id="show-perros">
-                        <label for="show-perros">Listado de productos</label>
-                        <ul>
-                            <li><a href="{% url 'listar_productos_perro' %}">Perros</a></li>
-                            <li><a href="#">Gatos</a></li>
-                            <li><a href="#">Conejo</a></li>
-                            <li><a href="#">Erizo</a></li>
-                            <li><a href="#">Hasmter</a></li>
-                            <li><a href="#">Hurrón</a></li>
-                        </ul>
+                        <a href="{% url 'listar_productos' %}" class="desktop-link">Listado de productos</a>
                     </li>
                     <li>
                         <a href="{% url 'agregar_productos' %}">Agregar productos</a>
@@ -72,36 +61,19 @@
         </div>
     </section>
 
-    <div class="container">
+    {% load crispy_forms_tags %}
+    <div class="container" >
         <div class="row">
-            <form action="{% url 'modificar' %}" id="formulario_registro" method="POST" style="padding-bottom: 50px;">
+            <form action="" id="formulario_registro" method="POST" enctype="multipart/form-data" style="padding-bottom: 50px;">
                 {% csrf_token %}
-                <div class="form-group" style="padding-bottom: 10px;">
-                    <label for="id_producto" style="font-size: 20px;">ID del producto: </label>
-                    <input class="form-control" type="number" value="{{ producto.idProducto }}" id="id_producto" name="id_producto" required readonly style="font-size: 20px;">
-                </div>
-
-                <div class="form-group" style="padding-bottom: 10px;">
-                    <label for="nombre" style="font-size: 20px;">Nombre del producto: </label>
-                    <input type="text" class="form-control" value="{{ producto.nomProducto }}" id="nombre" name="nombre" required style="font-size: 20px;">
-                </div>
-
-                <div class="form-group" style="padding-bottom: 10px;">
-                    <label for="precio" style="font-size: 20px;">Precio del producto: </label>
-                    <input class="form-control" type="number" value="{{ producto.precio }}" id="precio" name="precio" required style="font-size: 20px;">
-                </div>
-
-                <div class="form-group" style="padding-bottom: 10px;">
-                    <label for="stock" style="font-size: 20px;">Stock del producto: </label>
-                    <input class="form-control" type="number" value="{{ producto.stock }}" id="stock" name="stock" required style="font-size: 20px;">
-                </div>
-
-                <div class="form-group" style="padding-bottom: 10px;">
-                    <label for="descripcion" style="font-size: 20px;">Descripción del producto: </label>
-                    <textarea class="form-control" type="text" name="descripcion" id="descripcion" cols="30" rows="10" required style="font-size: 20px;">{{ producto.descripcion }}</textarea>
+                <div class="form" style="font-size: 20px;">
+                    {{ form | crispy }}
                 </div>
 
                 <button type="submit" class="btn btn-primary" style="background-color: #d45079; border-color: #d45079;">Modificar producto</button>
+                <a href="{% url 'listar_productos' %}">
+                    <button type="button" class="btn btn-primary" style="background-color: #d45079; border-color: #d45079;">Volver al listado</button>
+                </a>
             </form>
         </div>
     </div>

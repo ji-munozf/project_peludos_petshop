@@ -1,8 +1,6 @@
-from urllib import request
-from django.http import Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Producto, TipoMascota, TipoProducto, Contacto
-from .forms import CustomUserCreationForm
+from .forms import ProductoForm, CustomUserCreationForm
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.contrib import messages
@@ -39,13 +37,13 @@ def home_admin(request):
 
     return render(request, 'peludos_petshop/Vista_admin/home_admin.html')
 
-def listar_productos_perro(request):
+def listar_productos(request):
     producto = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
+    page1 = request.GET.get('page', 1)
 
     try:
         paginator = Paginator(producto, 9)
-        producto = paginator.page(page)
+        producto = paginator.page(page1)
     except:
         raise Http404
 
@@ -54,78 +52,52 @@ def listar_productos_perro(request):
         "paginator": paginator
     }
 
-    return render(request, 'peludos_petshop/Vista_admin/listar_productos_perros.html', contexto)
+    return render(request, 'peludos_petshop/Vista_admin/listado_productos.html', contexto)
 
+def agregar_productos(request):
 
-def listar_mascota_productos(request):
-    tipo_mascota = TipoMascota.objects.all().order_by('idMascota')
-    tipo_producto = TipoProducto.objects.all().order_by('idTipoProducto')
-    contexto = {
-        "tipo_m": tipo_mascota,
-        "tipo_p": tipo_producto
+    data = {
+        'form': ProductoForm()
     }
 
-    return render(request, 'peludos_petshop/Vista_admin/agregar_productos.html', contexto)
+    if request.method == 'POST':
+        formulario = ProductoForm(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
 
-def registar_producto(request):
-    id_producto = request.POST['id_producto']
-    nombre_p = request.POST['nombre']
-    precio_p = request.POST['precio']
-    stock_p = request.POST['stock']
-    descripcion_p = request.POST['descripcion']
-    img_foto = request.FILES['foto_m']
-    tipo_m = request.POST['tip_mascota']
-    tipo_p = request.POST['tip_producto']
-    #obtener el registro completo de la mascota y tipo producto
-    mascota_c = TipoMascota.objects.get(idMascota = tipo_m)
-    tipo_producto_c = TipoProducto.objects.get(idTipoProducto = tipo_p)
+            messages.success(request,'Producto Agregado')
+            return redirect('agregar_productos')
 
-    #insert
-    Producto.objects.create(idProducto =id_producto, nomProducto = nombre_p, precio = precio_p, stock = stock_p, descripcion = descripcion_p, fotoProducto = img_foto, tipoMascota = mascota_c, tipoProducto = tipo_producto_c) 
+        else:
+            data["form"] = formulario
 
-    messages.success(request,'Producto Registrada')
+    return render(request, 'peludos_petshop/Vista_admin/agregar_productos.html', data)
 
-    return redirect('agregar_productos')
 
 def eliminar_producto(request, id):
     producto1 = Producto.objects.get(idProducto = id)
     producto1.delete() #elimina el registro
     messages.success(request,'Producto Eliminada')
 
-    return redirect('listar_productos_perro')
+    
 
 def modificar_productos(request, id):
-    producto1 = Producto.objects.get(idProducto = id) # obtengo los datos del producto
-    mascota1 = TipoMascota.objects.all() #obtener todos los tipos de mascotas para llenar el combobox
-    tipo_p1 = TipoProducto.objects.all() #obtener todos los tipos de productos para llenar el combobox
 
-    contexto = {
-        "producto": producto1,
-        "mascotas": mascota1,
-        "tipo_productos": tipo_p1 
+    producto = get_object_or_404(Producto, idProducto = id)
+
+    data = {
+        'form': ProductoForm(instance=producto)
     }
 
-    return render(request,'peludos_petshop/Vista_admin/modificar_productos.html',contexto)
+    if request.method == 'POST':
+        formulario = ProductoForm(data=request.POST, instance=producto, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request,'Producto Modificado')
+            return redirect('listar_productos')
+        data["form"] = formulario
 
-def modificar(request):
-    id_producto = request.POST['id_producto']
-    nombre_p = request.POST['nombre']
-    precio_p = request.POST['precio']
-    stock_p = request.POST['stock']
-    descripcion_p = request.POST['descripcion']
-
-    producto = Producto.objects.get(idProducto = id_producto) #el registro original
-    #comienzo a reemplazar los valores en ese registro original
-    producto.nomProducto = nombre_p
-    producto.precio = precio_p
-    producto.stock = stock_p
-    producto.descripcion = descripcion_p
-
-    producto.save() #update
-
-    messages.success(request, 'Producto modificado')
-
-    return redirect('listar_productos_perro')
+    return render(request,'peludos_petshop/Vista_admin/modificar_productos.html', data)
 
 def lista_contactos(request):
     listado = Contacto.objects.all()
@@ -144,289 +116,153 @@ def eliminar_contacto(request, id_contacto):
 
 def alimentos_secos_perro(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/alimentos_secos_perro.html',contexto)
 
 def alimentos_enlatados_perro(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/alimentos_enlatados_perro.html',contexto)
 
 def snack_perro(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/snack_perro.html',contexto)
 
 def juguete_perro(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/juguete_perro.html',contexto)
 
 def alimentos_secos_gato(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/alimentos_secos_gato.html', contexto)
 
 def alimentos_enlatados_gato(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/alimentos_enlatados_gato.html', contexto)
 
 def arena_sanitaria_gato(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/arena_sanitaria_gato.html', contexto)
 
 def snack_gato(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/snack_gato.html', contexto)
 
 def juguete_gato(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/juguete_gato.html', contexto)
 
 def alimentos_conejo(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/alimentos_conejo.html', contexto)
 
 def accesorios_conejo(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/accesorios_conejo.html', contexto)
 
 def alimentos_erizo(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/alimentos_erizo.html', contexto)
 
 def accesorios_erizo(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/accesorios_erizo.html', contexto)
 
 def alimentos_hamster(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/alimentos_hamster.html', contexto)
 
 def accesorios_hamster(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/accesorios_hamster.html', contexto)
 
 def alimentos_hurron(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/alimentos_hurron.html', contexto)
 
 def accesorios_hurron(request):
     productos = Producto.objects.all().order_by('nomProducto')
-    page = request.GET.get('page', 1)
-
-    try:
-        paginator = Paginator(productos, 9)
-        productos = paginator.page(page)
-    except:
-        raise Http404
 
     contexto = {
-        "entity": productos,
-        "paginator": paginator
+        "productos": productos
     }
 
     return render(request, 'peludos_petshop/Vista_usuario/accesorios_hurron.html', contexto)

@@ -31,17 +31,7 @@
                 <div class="logo"><a href="{% url 'home_admin' %}">Peludos petshop</a></div>
                 <ul class="links">
                     <li>
-                        <a href="#" class="desktop-link">Listado de productos</a>
-                        <input type="checkbox" id="show-perros">
-                        <label for="show-perros">Listado de productos</label>
-                        <ul>
-                            <li><a href="{% url 'listar_productos_perro' %}">Perros</a></li>
-                            <li><a href="#">Gatos</a></li>
-                            <li><a href="#">Conejo</a></li>
-                            <li><a href="#">Erizo</a></li>
-                            <li><a href="#">Hasmter</a></li>
-                            <li><a href="#">Hurrón</a></li>
-                        </ul>
+                        <a href="{% url 'listar_productos' %}" class="desktop-link">Listado de productos</a>
                     </li>
                     <li>
                         <a href="{% url 'agregar_productos' %}">Agregar productos</a>
