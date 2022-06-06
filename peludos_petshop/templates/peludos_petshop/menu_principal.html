@@ -220,7 +220,7 @@
                     title="El correo debe ser de la siguiente manera: example@domino.algo" required class="box"
                     name="email">
                 <label for="nombre" style="font-size: 18px;">Número celular:</label>
-                <input type="number" placeholder="Ingrese solo los 8 dígitos de su número" id="number" name="number" required class="box" min="8" max="8">
+                <input type="number" placeholder="Ingrese solo los 8 dígitos de su número" id="number" name="number" required class="box">
                 <label for="nombre" style="font-size: 18px;">Asunto:</label>
                 <input type="text" id="asunto" name="asunto" pattern="[A-Za-z\u00f1\u00d1 ]+"
                     title="Solo se permiten letras y espacios" maxlength="50" required class="box">
@@ -232,7 +232,7 @@
             </form>
 
             <div class="image">
-                <img src="{% static 'peludos_petshop/img/Contacto.jpg' %}" alt="">
+                <img src="{% static '/img/Contacto.jpg' %}" alt="">
             </div>
         </div>
 
