@@ -37,7 +37,7 @@ img {
 }
 .content .logo a{
   color: #fff;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 600;
   text-decoration: none;
 }
@@ -48,7 +48,7 @@ img {
 .content .links li a,
 .content .links li label{
   color: #fff;
-  font-size: 18px;
+  font-size: 14.5px;
   font-weight: 500;
   padding: 9px 17px;
   border-radius: 5px;

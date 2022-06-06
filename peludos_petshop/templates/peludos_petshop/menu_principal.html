@@ -120,9 +120,6 @@
                     <li>
                         <a href="{% url 'login' %}">Iniciar sesión</a>
                     </li>
-                    <li>
-                        <a href="{% url 'registro_usuario' %}">Registrarse</a>
-                    </li>
                     {% endif %}
                 </ul>
             </div>
@@ -148,11 +145,11 @@
         <div class="container">
             <div class="row">
                 {% for m in mascotas %}
-                <div class="card" style="border: none;">
+                <div class="card" style="border: none; max-width: 250px;">
                     {% if m.fotoMascota %}
                     <img src="{{ m.fotoMascota.url }}" width="100%" alt="No hay imagen de la mascota">
                     {% endif %}
-                    <h2 style="font-size: 25px; padding-top: 10px;">{{ m.nomTipoMascota | title }}</h2>
+                    <h2>{{ m.nomTipoMascota | title }}</h2>
                 </div>
                 {% endfor %}
             </div>

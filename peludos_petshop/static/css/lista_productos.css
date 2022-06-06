@@ -13,7 +13,7 @@ body {
 }
 
 .section-products .header h1 {
-  font-size: 60px;
+  font-size: 50px;
   color: #FE6240;
   font-weight: 500px;
 }
@@ -25,7 +25,7 @@ body {
 
 .card {
   box-shadow: 0 4px px 0 #444444;
-  max-width: 350px;
+  max-width: 300px;
   margin: 35px;
   text-align: center;
 }
