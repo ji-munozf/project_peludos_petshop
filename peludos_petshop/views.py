@@ -77,9 +77,8 @@ def agregar_productos(request):
 def eliminar_producto(request, id):
     producto1 = Producto.objects.get(idProducto = id)
     producto1.delete() #elimina el registro
-    messages.success(request,'Producto Eliminada')
-
-    
+    messages.success(request,'Producto Eliminado')
+    return redirect('listar_productos')
 
 def modificar_productos(request, id):
 
