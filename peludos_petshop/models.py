@@ -4,7 +4,7 @@ from django.db import models
 
 #Modelo tipo_mascota
 class TipoMascota(models.Model):
-    idMascota = models.AutoField(primary_key=True, verbose_name="ID de mascota")
+    idMascota = models.IntegerField(primary_key=True, verbose_name="ID de mascota")
     nomTipoMascota = models.CharField(max_length=50, verbose_name="Nombre tipo de las mascotas")
     fotoMascota = models.ImageField(upload_to="mascotas", null=True)
 
@@ -13,7 +13,7 @@ class TipoMascota(models.Model):
 
 #Modelo tipo_producto
 class TipoProducto(models.Model):
-    idTipoProducto = models.AutoField(primary_key=True, verbose_name="ID tipo de producto")
+    idTipoProducto = models.IntegerField(primary_key=True, verbose_name="ID tipo de producto")
     nomTipoProducto = models.CharField(max_length=50, verbose_name="Nombre tipo del producto")
 
     def __str__(self):
@@ -34,11 +34,11 @@ class Producto(models.Model):
 
 class Contacto(models.Model):
     idContacto = models.AutoField(primary_key=True, verbose_name="ID de contacto")
-    nombreContacto = models.CharField(max_length=100, verbose_name="Nombre de contacto")
-    correoContacto = models.EmailField(verbose_name="Correo de contacto")
-    numCelularContacto = models.IntegerField(verbose_name="Número de contacto")
-    asunto = models.CharField(max_length=50, verbose_name="Asunto contacto")
-    mensajeContacto = models.TextField(verbose_name="Descripción del producto")
+    nombreContacto = models.CharField(max_length=100, verbose_name="Nombre de contacto", null=False, blank= False)
+    correoContacto = models.EmailField(verbose_name="Correo de contacto", null=False, blank= False)
+    numCelularContacto = models.IntegerField(verbose_name="Número de contacto", blank= False)
+    asunto = models.CharField(max_length=50, verbose_name="Asunto contacto", null=False, blank= False)
+    mensajeContacto = models.TextField(verbose_name="Descripción del producto", null=False, blank= False)
 
     def __str__(self):
         return self.nombreContacto

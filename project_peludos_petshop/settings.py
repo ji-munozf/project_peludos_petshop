@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'peludos_petshop',
+    'api_rest',
+    'rest_framework',
+    'rest_framework.authtoken',
     'django.contrib.humanize',
     "crispy_forms",
     "crispy_bootstrap5",
@@ -78,6 +81,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project_peludos_petshop.wsgi.application'
 
+REST_FRAMEWORK={
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
