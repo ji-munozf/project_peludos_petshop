@@ -34,7 +34,7 @@ def agregar_producto(request):
 
 @api_view(['GET','PUT','DELETE'])
 @permission_classes((IsAuthenticated,))
-def controlP(request, id):
+def detalle_producto(request, id):
     try:
         m = Producto.objects.get(idProducto = id)
     except Producto.DoesNotExist:
