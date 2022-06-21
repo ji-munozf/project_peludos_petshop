@@ -1,8 +1,8 @@
 from django.urls import path
 from .views import home, alimentos_secos_perro, alimentos_enlatados_perro, snack_perro, juguete_perro, alimentos_secos_gato, alimentos_enlatados_gato, arena_sanitaria_gato, \
     snack_gato, juguete_gato, alimentos_conejo, accesorios_conejo, alimentos_erizo, accesorios_erizo, alimentos_hamster, accesorios_hamster, alimentos_hurron, accesorios_hurron, \
-    detalle_producto, home_admin, agregar_productos, eliminar_producto, modificar_productos, registro_usuario, \
-    registrar_contacto, lista_contactos, eliminar_contacto, listar_productos
+    detalle_producto, home_admin, agregar_productos, eliminar_producto, modificar_productos, registro_usuario,  registrar_contacto, lista_contactos, eliminar_contacto, \
+    listar_productos, carrito_de_compras
 
 urlpatterns = [
     path('', home, name="home"),
@@ -33,4 +33,5 @@ urlpatterns = [
     path('Listado_contactos', lista_contactos, name="lista_contactos"),
     path('eliminar_contacto/<int:id_contacto>',eliminar_contacto, name="eliminar_contacto"),
     path('listado_productos/', listar_productos, name="listar_productos"),
+    path('carrito_de_compras/', carrito_de_compras, name="carrito_de_compras"),
 ]

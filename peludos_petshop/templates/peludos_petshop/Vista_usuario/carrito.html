@@ -136,34 +136,12 @@
             <div class="row justify-content-center text-center">
                 <div class="col-md-8 col-lg-6">
                     <div class="header">
-                        <h1>Alimentos secos</h1>
-                        <h3>Para tu perro</h3>
+                        <h1>Carrito de compras</h1>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    {% load humanize %}
-    <div class="container">
-        <div class="row">
-            {% for m in productos %}
-            {% if m.tipoMascota.idMascota == 1 and m.tipoProducto.idTipoProducto == 1 %}
-            <div class="card">
-                <a href="/detalle_producto/{{m.idProducto}}">
-                    {% if m.fotoProducto %}
-                    <img src="{{ m.fotoProducto.url }}" alt="No hay imagen de producto">
-                    {% endif %}
-                </a>
-                <h4>{{ m.nomProducto | title }}</h4>
-                <p class="price">Precio: ${{ m.precio | intcomma }}</p>
-                <p class="price">Stock: {{ m.stock }} unidades</p>
-                <p><button type="button" class="btn btn-primary">Añadir al carrito</button></p>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-    </div>
 
     <a href="https://api.whatsapp.com/send?phone=930991227&text=Hola%20buenas.%20¡Necesito%20de%20su%20ayuda!"
         class="float" target="_blank">

@@ -290,3 +290,6 @@ def registro_usuario(request):
 
     return render(request, 'registration/registro.html', data)
 
+def carrito_de_compras(request):
+
+    return render(request, 'peludos_petshop/Vista_usuario/carrito.html')
