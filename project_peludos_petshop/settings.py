@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'peludos_petshop',
     'api_rest',
+    'carro',
     'rest_framework',
     'rest_framework.authtoken',
     'django.contrib.humanize',

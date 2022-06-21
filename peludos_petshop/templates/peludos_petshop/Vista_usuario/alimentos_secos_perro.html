@@ -158,7 +158,9 @@
                 <h4>{{ m.nomProducto | title }}</h4>
                 <p class="price">Precio: ${{ m.precio | intcomma }}</p>
                 <p class="price">Stock: {{ m.stock }} unidades</p>
-                <p><button type="button" class="btn btn-primary">Añadir al carrito</button></p>
+                <div class="card-footer text_center" style="padding-bottom: 15px;">
+                    <a href="#" class="btn btn-success">Añadir al carrito</a>
+                </div>
             </div>
             {% endif %}
             {% endfor %}
