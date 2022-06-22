@@ -18,36 +18,8 @@
     <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
 </head>
 <body>
-    <div class="wrapper">
-        <nav>
-            <input type="checkbox" id="show-search">
-            <input type="checkbox" id="show-menu">
-            <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
-            <div class="content">
-                <img src="{% static '/img/peludos_petshop_icon.png' %}" alt="Peludos">
-                <div class="logo"><a href="{% url 'home_admin' %}">Peludos petshop</a></div>
-                <ul class="links">
-                    <li>
-                        <a href="{% url 'listar_productos' %}" class="desktop-link">Listado de productos</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'agregar_productos' %}">Agregar productos</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'lista_contactos' %}">Lista de contactos</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'home' %}">Salir del menú administrador</a>
-                    </li>
-                </ul>
-            </div>
-            <label for="show-search" class="search-icon"></label>
-            <form action="#" method="get" class="search-box">
-                <input type="text" placeholder="¿Que es lo que buscas?" required>
-                <button type="submit" class="go-icon"><i class="fas fa-long-arrow-alt-right"></i></button>
-            </form>
-        </nav>
-    </div>
+    
+    {% include "peludos_petshop/navbar_admin.html" %}
 
     <section class="section-products">
         <div class="container">

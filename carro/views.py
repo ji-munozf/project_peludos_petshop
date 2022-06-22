@@ -27,6 +27,6 @@ def restar_producto(request, producto_id):
 
 def limpiar_carro(request):
     carro=Carro(request)
-    carro.limpiar_carro
+    carro.limpiar_carro()
 
     return redirect("carrito_de_compras")

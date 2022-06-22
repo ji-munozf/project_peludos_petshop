@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, alimentos_secos_perro, alimentos_enlatados_perro, snack_perro, juguete_perro, alimentos_secos_gato, alimentos_enlatados_gato, arena_sanitaria_gato, \
+from .views import home, alimentos_secos_perro, alimentos_humedos_perro, snack_perro, juguete_perro, alimentos_secos_gato, alimentos_humedos_gato, arena_sanitaria_gato, \
     snack_gato, juguete_gato, alimentos_conejo, accesorios_conejo, alimentos_erizo, accesorios_erizo, alimentos_hamster, accesorios_hamster, alimentos_hurron, accesorios_hurron, \
     detalle_producto, home_admin, agregar_productos, eliminar_producto, modificar_productos, registro_usuario,  registrar_contacto, lista_contactos, eliminar_contacto, \
     listar_productos, carrito_de_compras
@@ -8,11 +8,11 @@ urlpatterns = [
     path('', home, name="home"),
     path('home_admin/', home_admin, name="home_admin"),
     path('alimentos_secos_perro/', alimentos_secos_perro, name="alimentos_secos_perro"),
-    path('alimentos_enlatados_perro/', alimentos_enlatados_perro, name="alimentos_enlatados_perro"),
+    path('alimentos_humedos_perro/', alimentos_humedos_perro, name="alimentos_humedos_perro"),
     path('snack_perro/', snack_perro, name="snack_perro"),
     path('juguete_perro/', juguete_perro, name="juguete_perro"),
     path('alimentos_secos_gato/', alimentos_secos_gato, name="alimentos_secos_gato"),
-    path('alimentos_enlatados_gato/', alimentos_enlatados_gato, name="alimentos_enlatados_gato"),
+    path('alimentos_humedos_gato/', alimentos_humedos_gato, name="alimentos_humedos_gato"),
     path('arena_sanitaria_gato/', arena_sanitaria_gato, name="arena_sanitaria_gato"),
     path('snack_gato/', snack_gato, name="snack_gato"),
     path('juguete_gato/', juguete_gato, name="juguete_gato"),

@@ -122,14 +122,14 @@ def alimentos_secos_perro(request):
 
     return render(request, 'peludos_petshop/Vista_usuario/alimentos_secos_perro.html',contexto)
 
-def alimentos_enlatados_perro(request):
+def alimentos_humedos_perro(request):
     productos = Producto.objects.all().order_by('nomProducto')
 
     contexto = {
         "productos": productos
     }
 
-    return render(request, 'peludos_petshop/Vista_usuario/alimentos_enlatados_perro.html',contexto)
+    return render(request, 'peludos_petshop/Vista_usuario/alimentos_humedos_perro.html',contexto)
 
 def snack_perro(request):
     productos = Producto.objects.all().order_by('nomProducto')
@@ -158,14 +158,14 @@ def alimentos_secos_gato(request):
 
     return render(request, 'peludos_petshop/Vista_usuario/alimentos_secos_gato.html', contexto)
 
-def alimentos_enlatados_gato(request):
+def alimentos_humedos_gato(request):
     productos = Producto.objects.all().order_by('nomProducto')
 
     contexto = {
         "productos": productos
     }
 
-    return render(request, 'peludos_petshop/Vista_usuario/alimentos_enlatados_gato.html', contexto)
+    return render(request, 'peludos_petshop/Vista_usuario/alimentos_humedos_gato.html', contexto)
 
 def arena_sanitaria_gato(request):
     productos = Producto.objects.all().order_by('nomProducto')

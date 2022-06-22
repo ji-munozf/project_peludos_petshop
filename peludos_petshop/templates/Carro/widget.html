@@ -39,3 +39,13 @@
     </tfoot>
 
 </table>
+
+{% if request.session.carro.items %}
+    <div class="container" style="float: right;">
+        <a href="{% url 'carro:limpiar' %}" style="text-decoration: none;">
+            <div class="d-grid">
+                <button style="background-color: #d45079; border-color: #d45079;" type="button" class="btn btn-primary">Limpiar carrito</button>
+            </div>
+        </a>
+    </div>
+{% endif %}
