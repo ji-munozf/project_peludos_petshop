@@ -30,9 +30,11 @@
         <div class=" mb-3">
             <div class="row g-0">
                 <div class="col-md-1"></div>
+                {% if m.fotoProducto %}
                 <div class="col-md-3">
-                    <img src="{{ producto.fotoProducto.url }}" class="img-fluid" alt="peludos">
+                    <img src="{{ producto.fotoProducto.url }}" class="img-fluid" alt="No hay imagen del producto">
                 </div>
+                {% endif %}
                 <div class="col-md-7">
                     <div class="card-body">
                         <h2 class="card-title">{{producto.nomProducto}}</h2>
