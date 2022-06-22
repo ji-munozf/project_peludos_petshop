@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import ProductoSerializer, IdMascotaSerializer, IdTipoProductoSerializer
+from .serializers import ProductoSerializer, TipoMascotaSerializer, TipoProductoSerializer
 from peludos_petshop.models import Producto, TipoMascota, TipoProducto
 
 from rest_framework.authentication import TokenAuthentication
@@ -64,7 +64,7 @@ def control_producto(request, id):
 def lista_tipo_mascota(request):
     if request.method == 'GET':
         productos = TipoMascota.objects.all()
-        serializer = IdMascotaSerializer(productos,many=True)
+        serializer = TipoMascotaSerializer(productos,many=True)
         return Response(serializer.data)
 
 @api_view(['POST'])
@@ -72,7 +72,7 @@ def lista_tipo_mascota(request):
 def agregar_tipo_mascota(request):
     if request.method == 'POST':
         data2 = JSONParser().parse(request)
-        serializer = IdMascotaSerializer(data = data2)
+        serializer = TipoMascotaSerializer(data = data2)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
@@ -88,12 +88,12 @@ def control_tipo_mascota(request, id):
         return Response(status = status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = IdMascotaSerializer(m)
+        serializer = TipoMascotaSerializer(m)
         return Response(serializer.data)
 
     elif request.method == 'PUT':
         data2 = JSONParser().parse(request)
-        serializer = IdMascotaSerializer(m,data = data2)
+        serializer = TipoMascotaSerializer(m,data = data2)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -110,7 +110,7 @@ def control_tipo_mascota(request, id):
 def lista_tipo_productos(request):
     if request.method == 'GET':
         productos = TipoMascota.objects.all()
-        serializer = IdTipoProductoSerializer(productos,many=True)
+        serializer = TipoProductoSerializer(productos,many=True)
         return Response(serializer.data)
 
 @api_view(['POST'])
@@ -118,7 +118,7 @@ def lista_tipo_productos(request):
 def agregar_tipo_producto(request):
     if request.method == 'POST':
         data2 = JSONParser().parse(request)
-        serializer = IdTipoProductoSerializer(data = data2)
+        serializer = TipoProductoSerializer(data = data2)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status = status.HTTP_201_CREATED)
@@ -134,12 +134,12 @@ def control_tipo_producto(request, id):
         return Response(status = status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = IdTipoProductoSerializer(m)
+        serializer = TipoMascotaSerializer(m)
         return Response(serializer.data)
 
     elif request.method == 'PUT':
         data2 = JSONParser().parse(request)
-        serializer = IdTipoProductoSerializer(m,data = data2)
+        serializer = TipoProductoSerializer(m,data = data2)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

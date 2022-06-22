@@ -6,12 +6,12 @@ class ProductoSerializer(serializers.ModelSerializer):
         model = Producto
         fields = '__all__'
 
-class IdMascotaSerializer(serializers.ModelSerializer):
+class TipoMascotaSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoMascota
         fields = '__all__'
 
-class IdTipoProductoSerializer(serializers.ModelSerializer):
+class TipoProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoProducto
         fields = '__all__'
