@@ -15,7 +15,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/menu_principal.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menuPrincipal.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/boton_whatsapp.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/lista_productos.css' %}">
@@ -93,7 +93,7 @@
 
     {% if messages %}
     {% for m in messages %}
-    <script style="height: 20px;">
+    <script>
         Swal.fire({
             "title": "Felicitaciones",
             "text": "{{m}}",
