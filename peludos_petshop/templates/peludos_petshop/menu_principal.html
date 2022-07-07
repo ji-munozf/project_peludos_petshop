@@ -15,10 +15,10 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/menuPrincipal.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/menuPrincipal.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/boton_whatsapp.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/lista_productos.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/lista_productos.css' %}">
 </head>
 
 <body>
@@ -43,7 +43,7 @@
         <div class="container">
             <div class="row">
                 {% for m in mascotas %}
-                <div class="card" style="border: none; max-width: 250px;">
+                <div class="card" style="border: none; max-width: 280px;">
                     {% if m.fotoMascota %}
                     <img src="{{ m.fotoMascota.url }}" width="100%" alt="No hay imagen de la mascota">
                     {% endif %}

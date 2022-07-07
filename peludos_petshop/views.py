@@ -107,7 +107,7 @@ def lista_contactos(request):
 def eliminar_contacto(request, id_contacto):
     listado1 = Contacto.objects.get(idContacto = id_contacto)
     listado1.delete() 
-    messages.success(request,'contacto eliminado')
+    messages.success(request,'Contacto eliminado')
 
     return redirect('lista_contactos')
 

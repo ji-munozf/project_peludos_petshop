@@ -77,7 +77,7 @@
                     {% if m.fotoProducto %}
                     <img src="{{ m.fotoProducto.url }}" alt="No hay imagen de producto">
                     {% endif %}
-                    <h6>{{ m.nomProducto }}</h6>
+                    <h3>{{ m.nomProducto }}</h3>
                     <p class="price">Mascota: {{ m.tipoMascota.nomTipoMascota }}</p>
                     <p class="price">{{ m.tipoProducto.nomTipoProducto }}</p>
                     <p>
@@ -86,7 +86,7 @@
                         </a>
                     </p>
                     <p>
-                        <a href="#" onclick="eliminarProducto({{m.idProducto}})">   
+                        <a href="#" onclick="eliminarProducto({{m.idProducto}})">
                             <button type="button" class="btn btn-warning">Eliminar producto</button>
                         </a>
                     </p>

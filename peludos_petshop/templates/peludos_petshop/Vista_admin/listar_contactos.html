@@ -6,22 +6,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perros - Listado de productos</title>
+    <title>Lista de contactos</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/listar_contacto.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/lista_productos.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/menuPrincipal.css' %}">
+    <script>
+        function eliminarContacto(id) {
+            Swal.fire({
+                "title": "¿Estas seguro?",
+                "text": "esta acción no se puede deshacer",
+                "icon": "question",
+                "showCancelButton": true,
+                "cancelButtonText": "No, cancelar",
+                "confirmButtonText": "Si, estoy seguro",
+                "reverseButtons": true,
+                "confirmButtonColor": "#ff2400"
+            })
+                .then(function (result) {
+                    if (result.isConfirmed) {
+                        window.location.href = "/eliminar_contacto/" + id
+                    }
+                })
+        }
+    </script>
 </head>
 
 <body>
-    
+
     {% include "peludos_petshop/navbar_admin.html" %}
 
     <section class="section-products">
@@ -36,18 +57,20 @@
         </div>
     </section>
 
+    {% if messages %}
+    {% for j in messages %}
+    <script>
+        Swal.fire({
+            "title": "Felicitaciones",
+            "text": "{{j}}",
+            "icon": "success"
+        })
+    </script>
+    {% endfor %}
+    {% endif %}
+
     <div class="container; table_container">
         <div class="row">
-            {% if messages %}
-            <div>
-                {% for i in messages %}
-                <p style="color: red;">{{ i }}</p>
-                {% endfor %}
-            </div>
-
-            {% endif %}
-
-
             <table class="table">
                 <thead>
                     <tr">
@@ -68,7 +91,7 @@
                         <td>{{ p.asunto }}</td>
                         <td>{{ p.mensajeContacto }}</td>
                         <td style="text-align: center;">
-                            <a href="{% url 'eliminar_contacto' p.idContacto %}">
+                            <a href="#" onclick="eliminarContacto({{p.idContacto}})">
                                 <button type="button" class="btn btn-danger">Eliminar</button>
                             </a>
                         </td>
