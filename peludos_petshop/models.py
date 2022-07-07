@@ -36,7 +36,6 @@ class Contacto(models.Model):
     idContacto = models.AutoField(primary_key=True, verbose_name="ID de contacto")
     nombreContacto = models.CharField(max_length=100, verbose_name="Nombre de contacto", null=False, blank= False)
     correoContacto = models.EmailField(verbose_name="Correo de contacto", null=False, blank= False)
-    numCelularContacto = models.IntegerField(verbose_name="Número de contacto", blank= False)
     asunto = models.CharField(max_length=50, verbose_name="Asunto contacto", null=False, blank= False)
     mensajeContacto = models.TextField(verbose_name="Descripción del producto", null=False, blank= False)
 

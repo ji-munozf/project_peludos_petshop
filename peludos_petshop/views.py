@@ -6,7 +6,6 @@ from django.http import Http404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
-
 # Create your views here.
 
 def home(request):
@@ -272,6 +271,7 @@ def detalle_producto(request, id):
     return render(request, 'peludos_petshop/Vista_usuario/detalle_producto.html', contexto)
 
 def registro_usuario(request):
+
     data = {
         'form': CustomUserCreationForm()
     }
@@ -283,7 +283,7 @@ def registro_usuario(request):
             user = authenticate(username = formulario.cleaned_data["username"], password = formulario.cleaned_data["password1"])
             login(request, user)
             messages.success(request, "Te has registrado correctamente")
-            redirect(to="home")
+            redirect('home')
         
         data["form"] = formulario
 
