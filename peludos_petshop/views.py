@@ -283,7 +283,7 @@ def registro_usuario(request):
             user = authenticate(username = formulario.cleaned_data["username"], password = formulario.cleaned_data["password1"])
             login(request, user)
             messages.success(request, "Te has registrado correctamente")
-            redirect('home')
+            redirect(to="registro_usuario")
         
         data["form"] = formulario
 
