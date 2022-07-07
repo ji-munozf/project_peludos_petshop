@@ -13,15 +13,34 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="{% static '/css/lista_productos.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static '/css/menu_principal.css' %}">
+    <script>
+        function eliminarProducto(id) {
+            Swal.fire({
+                "title": "¿Estas seguro?",
+                "text": "esta acción no se puede deshacer",
+                "icon": "question",
+                "showCancelButton": true,
+                "cancelButtonText": "No, cancelar",
+                "confirmButtonText": "Si, estoy seguro",
+                "reverseButtons": true,
+                "confirmButtonColor": "#ff2400"
+            })
+            .then(function(result) {
+                if(result.isConfirmed) {
+                    window.location.href = "/eliminar/"+id
+                }
+            })
+        }
+    </script>
 </head>
 
 <body>
-    
+
     {% include "peludos_petshop/navbar_admin.html" %}
 
     <section class="section-products">
@@ -37,16 +56,19 @@
         </div>
     </section>
 
+    {% if messages %}
+    {% for i in messages %}
+    <script>
+        Swal.fire({
+            "title": "Felicitaciones",
+            "text": "{{i}}",
+            "icon": "success"
+        })
+    </script>
+    {% endfor %}
+    {% endif %}
+
     <div class="container" style="font-size: 20px;">
-        {% if messages %}
-        <div>   
-            {% for i in messages %}
-            <p style="color: red;">{{ i }}</p>
-            {% endfor %}
-        </div>
-
-        {% endif %}
-
         {% load humanize %}
         <div class="container">
             <div class="row">
@@ -55,7 +77,7 @@
                     {% if m.fotoProducto %}
                     <img src="{{ m.fotoProducto.url }}" alt="No hay imagen de producto">
                     {% endif %}
-                    <h4>{{ m.nomProducto }}</h4>
+                    <h6>{{ m.nomProducto }}</h6>
                     <p class="price">Mascota: {{ m.tipoMascota.nomTipoMascota }}</p>
                     <p class="price">{{ m.tipoProducto.nomTipoProducto }}</p>
                     <p>
@@ -64,7 +86,7 @@
                         </a>
                     </p>
                     <p>
-                        <a href="{% url 'eliminar_producto' m.idProducto %}">
+                        <a href="#" onclick="eliminarProducto({{m.idProducto}})">   
                             <button type="button" class="btn btn-warning">Eliminar producto</button>
                         </a>
                     </p>
@@ -76,8 +98,6 @@
         <div>
             {% include 'peludos_petshop/paginador.html' %}
         </div>
-
-
 </body>
 
 </html>

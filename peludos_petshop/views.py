@@ -22,11 +22,10 @@ def home(request):
 def registrar_contacto(request):
     nombre_contacto = request.POST['nom_contacto']
     correo_contacto = request.POST['email']
-    num_celular = request.POST['number']
     asunto_contacto = request.POST['asunto']
     mensaje_contacto = request.POST['mensaje']
 
-    Contacto.objects.create(nombreContacto = nombre_contacto, correoContacto = correo_contacto, numCelularContacto = num_celular, asunto = asunto_contacto, mensajeContacto = mensaje_contacto) 
+    Contacto.objects.create(nombreContacto = nombre_contacto, correoContacto = correo_contacto, asunto = asunto_contacto, mensajeContacto = mensaje_contacto) 
 
     messages.success(request,'Contacto enviado correctamente')
 
@@ -92,7 +91,7 @@ def modificar_productos(request, id):
         formulario = ProductoForm(data=request.POST, instance=producto, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            messages.success(request,'Producto Modificado')
+            messages.success(request,'Producto modificado correctamente')
             return redirect('listar_productos')
         data["form"] = formulario
 
@@ -284,7 +283,7 @@ def registro_usuario(request):
             user = authenticate(username = formulario.cleaned_data["username"], password = formulario.cleaned_data["password1"])
             login(request, user)
             messages.success(request, "Te has registrado correctamente")
-            redirect(to="registro_usuario")
+            redirect(to="home")
         
         data["form"] = formulario
 

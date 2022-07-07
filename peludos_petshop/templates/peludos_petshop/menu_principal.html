@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    
+
     {% include "peludos_petshop/navbar.html" %}
 
     <section class="home" id="home">
@@ -95,12 +95,15 @@
         <div class="row">
 
             {% if messages %}
-            <div>
-                {% for i in messages %}
-                <p style="color: green; font-size: 20px;">{{ i }}</p>
-                {% endfor %}
-            </div>
-
+            {% for i in messages %}
+            <script>
+                Swal.fire({
+                    "title": "Felicitaciones",
+                    "text": "{{i}}",
+                    "icon": "success"
+                })
+            </script>
+            {% endfor %}
             {% endif %}
 
             <form action="{% url 'registro_contacto' %}" method="POST" id="contact">
@@ -113,14 +116,12 @@
                     pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
                     title="El correo debe ser de la siguiente manera: example@domino.algo" required class="box"
                     name="email">
-                <label for="nombre" style="font-size: 18px;">Número celular:</label>
-                <input type="number" placeholder="Ingrese solo los 8 dígitos de su número" id="number" name="number" required class="box">
                 <label for="nombre" style="font-size: 18px;">Asunto:</label>
                 <input type="text" id="asunto" name="asunto" pattern="[A-Za-z\u00f1\u00d1 ]+"
                     title="Solo se permiten letras y espacios" maxlength="50" required class="box">
                 <label for="nombre" style="font-size: 18px;">Mensaje:</label>
-                <textarea name="mensaje" class="box" required id="mensaje" name="mensaje"
-                    cols="30" rows="10"></textarea>
+                <textarea name="mensaje" class="box" required id="mensaje" name="mensaje" cols="30"
+                    rows="10"></textarea>
                 <input type="submit" id="send" value="Enviar mensaje" class="btn">
                 <p class="aviso" id="aviso"></p>
             </form>
