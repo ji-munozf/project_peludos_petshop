@@ -41,9 +41,11 @@
                         <p class="card-text">ID: {{producto.idProducto}}</p>
                         <p class="card-text">Precio: ${{producto.precio | intcomma }}</p>
                         <p class="card-text">Stock: {{producto.stock}} unidades</p>
+                        {% if user.is_authenticated %}
                         <a href="{% url 'carro:agregar' producto.idProducto %}">
                             <button type="button" class="btn btn-primary">Añadir al carrito</button>
                         </a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-md-1"></div>
