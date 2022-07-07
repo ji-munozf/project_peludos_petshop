@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 
 class ProductoForm(forms.ModelForm):
 
+    fotoProducto = forms.FileField(required=False)
+
     class Meta:
         model = Producto
         fields = '__all__'

@@ -63,8 +63,8 @@ def agregar_productos(request):
         if formulario.is_valid():
             formulario.save()
 
-            messages.success(request,'Producto Agregado')
-            return redirect('agregar_productos')
+            messages.success(request,'Producto agregado correctamente')
+            return redirect('listar_productos')
 
         else:
             data["form"] = formulario
