@@ -83,7 +83,7 @@ def agregar_tipo_mascota(request):
 @permission_classes((IsAuthenticated,))
 def control_tipo_mascota(request, id):
     try:
-        m = TipoMascota.objects.get(idProducto = id)
+        m = TipoMascota.objects.get(idMascota = id)
     except TipoMascota.DoesNotExist:
         return Response(status = status.HTTP_404_NOT_FOUND)
 
@@ -109,7 +109,7 @@ def control_tipo_mascota(request, id):
 @permission_classes((IsAuthenticated,))
 def lista_tipo_productos(request):
     if request.method == 'GET':
-        productos = TipoMascota.objects.all()
+        productos = TipoProducto.objects.all()
         serializer = TipoProductoSerializer(productos,many=True)
         return Response(serializer.data)
 
@@ -129,12 +129,12 @@ def agregar_tipo_producto(request):
 @permission_classes((IsAuthenticated,))
 def control_tipo_producto(request, id):
     try:
-        m = TipoProducto.objects.get(idProducto = id)
+        m = TipoProducto.objects.get(idTipoProducto = id)
     except TipoProducto.DoesNotExist:
         return Response(status = status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = TipoMascotaSerializer(m)
+        serializer = TipoProductoSerializer(m)
         return Response(serializer.data)
 
     elif request.method == 'PUT':
